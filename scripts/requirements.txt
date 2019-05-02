@@ -1,0 +1,9 @@
+# coreir need to merge my PR for ABI fix
+# -e git+https://github.com/leonardt/pycoreir#egg=coreir
+coreir
+magma-lang
+mantle
+-e git+https://github.com/Kuree/cgra_pnr#egg=pkg\&subdirectory=thunder
+-e git+https://github.com/Kuree/cgra_pnr#egg=pkg\&subdirectory=cyclone
+archipelago
+-e git+https://github.com/StanfordAHA/gemstone#egg=gemstone
