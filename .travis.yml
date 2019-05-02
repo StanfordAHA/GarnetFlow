@@ -1,0 +1,9 @@
+dist: xenial
+language: minimal
+service: docker
+
+before_install:
+    - docker pull keyiz/garnet-flow
+
+script:
+    - docker run -d -it --name garnet -v ${PWD}:/GarnetFlow keyiz/garnet-flow bash
