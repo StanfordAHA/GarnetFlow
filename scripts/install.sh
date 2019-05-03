@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/bash -e
 
 SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 pip install -r ${REQUIREMENTS}
 
 # build coreir here
-git https://github.com/leonardt/pycoreir.git
+git clone https://github.com/leonardt/pycoreir.git
 pip install -e pycoreir/
 
 # clone other repos
