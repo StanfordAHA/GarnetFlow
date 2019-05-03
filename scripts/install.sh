@@ -4,6 +4,10 @@ SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 pip install -r ${REQUIREMENTS}
 
+# build coreir here
+git https://github.com/leonardt/pycoreir.git
+pip install -e pycoreir/
+
 # clone other repos
 git clone https://github.com/StanfordAHA/garnet
 git clone https://github.com/StanfordAHA/Halide-to-Hardware
