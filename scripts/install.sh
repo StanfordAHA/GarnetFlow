@@ -13,12 +13,17 @@ pip install -e pycoreir/
 # install this last since we already have a coreir built
 pip install -r ${REQUIREMENTS}
 
+# it turns out that the pycoreir doesn't work for some reason
+# need to reinstall the release version
+pip install --ignore-installed coreir
+
 # clone other repos
 git clone https://github.com/StanfordAHA/garnet
 git clone --branch fix_abi https://github.com/StanfordAHA/Halide-to-Hardware
 
-# install Genesis
+# install Genesis and apply patch
 git clone https://github.com/StanfordVLSI/Genesis2
+cd Genesis2 && git apply /GarnetFlow/patches/genesis_zlib && cd /GarnetFlow
 
 # download the prebuilt Halide library
 cd Halide-to-Hardware

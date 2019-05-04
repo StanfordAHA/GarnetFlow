@@ -1,5 +1,5 @@
 diff --git a/src/passes/analysis/verifyconnectivity.cpp b/src/passes/analysis/verifyconnectivity.cpp
-index e3898f0..b16503e 100644
+index e3898f06..8678ca66 100644
 --- a/src/passes/analysis/verifyconnectivity.cpp
 +++ b/src/passes/analysis/verifyconnectivity.cpp
 @@ -1,6 +1,5 @@
@@ -26,15 +26,15 @@ index e3898f0..b16503e 100644
 -  if (opts.count("c")) {
 -    this->checkClkRst= false;
 +  for (int i = 0; i < argc; i++) {
-+    if (argv[i][0] == 'i')
++    if (std::string(argv[i]) == "i" or std::string(argv[i]) == "onlyinputs")
 +      this->onlyInputs = true;
-+    else if (argv[i][0] == 'y')
++    else if (std::string(argv[i]) == "c" or std::string(argv[i]) == "noclkrst")
 +      this->checkClkRst= false;
    }
  }
  
 diff --git a/src/passes/analysis/verilog.cpp b/src/passes/analysis/verilog.cpp
-index 67ad1bf..238ed89 100644
+index 67ad1bf1..29cf69c8 100644
 --- a/src/passes/analysis/verilog.cpp
 +++ b/src/passes/analysis/verilog.cpp
 @@ -2,7 +2,6 @@
@@ -61,9 +61,9 @@ index 67ad1bf..238ed89 100644
 -  if (opts.count("y")) {
 -    this->vmods._verilator_debug = true;
 +  for (int i = 0; i < argc; i++) {
-+    if (argv[i][0] == 'i')
++    if (std::string(argv[i]) == "I" or std::string(argv[i]) == "inline")
 +      this->vmods._inline = true;
-+    else if (argv[i][0] == 'y')
++    else if (std::string(argv[i]) == "y" or std::string(argv[i]) == "verilator_debug")
 +      this->vmods._verilator_debug = true;
    }
  }

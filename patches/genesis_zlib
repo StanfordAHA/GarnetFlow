@@ -1,0 +1,22 @@
+diff --git a/Genesis2Tools/PerlLibs/ExtrasForOldPerlDistributions/Compress/Raw/Zlib.pm b/Genesis2Tools/PerlLibs/ExtrasForOldPerlDistributions/Compress/Raw/Zlib.pm
+index 8b17dcc..fbdd121 100644
+--- a/Genesis2Tools/PerlLibs/ExtrasForOldPerlDistributions/Compress/Raw/Zlib.pm
++++ b/Genesis2Tools/PerlLibs/ExtrasForOldPerlDistributions/Compress/Raw/Zlib.pm
+@@ -3,7 +3,7 @@ package Compress::Raw::Zlib;
+ 
+ require 5.004 ;
+ require Exporter;
+-use AutoLoader;
++#use AutoLoader;
+ use Carp ;
+ 
+ #use Parse::Parameters;
+@@ -13,7 +13,7 @@ use warnings ;
+ use bytes ;
+ our ($VERSION, $XS_VERSION, @ISA, @EXPORT, $AUTOLOAD);
+ 
+-$VERSION = '2.033';
++$VERSION = '2.076';
+ $XS_VERSION = $VERSION; 
+ $VERSION = eval $VERSION;
+ 
