@@ -22,6 +22,9 @@ pip install -r ${REQUIREMENTS}
 #     make -j2 && \
 #     cd /GarnetFlow
 
+# remove this after coreir bug is fixed
+pip install --ignore-installed coreir
+
 # clone other repos
 git clone https://github.com/StanfordAHA/garnet
 git clone --branch fix_abi https://github.com/StanfordAHA/Halide-to-Hardware
