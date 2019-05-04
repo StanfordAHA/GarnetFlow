@@ -12,7 +12,7 @@ pip install -r ${REQUIREMENTS}
 
 # clone other repos
 git clone https://github.com/StanfordAHA/garnet
-git clone https://github.com/StanfordAHA/Halide-to-Hardware
+git clone --branch fix_abi https://github.com/StanfordAHA/Halide-to-Hardware
 
 # download the prebuilt Halide library
 cd Halide-to-Hardware
