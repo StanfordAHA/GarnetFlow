@@ -5,7 +5,7 @@ LABEL maintainer="keyi@cs.stanford.edu"
 
 RUN apt-get update && \
     apt-get -y install git gcc-8 g++-8 python3 python3-pip verilator cmake \
-        llvm-8 clang-8 libigraph0-dev zlib1g-dev libpng-dev libjpeg-dev && \
+        llvm-8 clang-8 curl wget libigraph0-dev zlib1g-dev libpng-dev libjpeg-dev && \
     apt-get clean
 
 RUN rm /usr/bin/python && \
