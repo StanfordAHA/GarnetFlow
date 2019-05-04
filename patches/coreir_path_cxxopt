@@ -1,0 +1,70 @@
+diff --git a/src/passes/analysis/verifyconnectivity.cpp b/src/passes/analysis/verifyconnectivity.cpp
+index e3898f0..b16503e 100644
+--- a/src/passes/analysis/verifyconnectivity.cpp
++++ b/src/passes/analysis/verifyconnectivity.cpp
+@@ -1,6 +1,5 @@
+ #include "coreir.h"
+ #include "coreir/passes/analysis/verifyconnectivity.h"
+-#include "coreir/tools/cxxopts.h"
+ 
+ using namespace std;
+ using namespace CoreIR;
+@@ -13,18 +12,11 @@ bool IsVerilogDefn(ModuleDef* defn) {
+ }
+ 
+ void Passes::VerifyConnectivity::initialize(int argc, char** argv) {
+-  cxxopts::Options options("verifyconnectivity", "verifys the connectivty of the hardware graph");
+-  options.add_options()
+-    ("h,help","help")
+-    ("i,onlyinputs","Only checks inputs")
+-    ("c,noclkrst","Do not check clocks")
+-  ;
+-  auto opts = options.parse(argc,argv);
+-  if (opts.count("i")) {
+-    this->onlyInputs = true;
+-  }
+-  if (opts.count("c")) {
+-    this->checkClkRst= false;
++  for (int i = 0; i < argc; i++) {
++    if (argv[i][0] == 'i')
++      this->onlyInputs = true;
++    else if (argv[i][0] == 'y')
++      this->checkClkRst= false;
+   }
+ }
+ 
+diff --git a/src/passes/analysis/verilog.cpp b/src/passes/analysis/verilog.cpp
+index 67ad1bf..238ed89 100644
+--- a/src/passes/analysis/verilog.cpp
++++ b/src/passes/analysis/verilog.cpp
+@@ -2,7 +2,6 @@
+ #include "coreir.h"
+ #include "coreir/passes/analysis/vmodule.h"
+ #include "coreir/passes/analysis/verilog.h"
+-#include "coreir/tools/cxxopts.h"
+ 
+ namespace CoreIR {
+ 
+@@ -24,17 +23,11 @@ void WriteModuleToStream(const Passes::VerilogNamespace::VModule* module,
+ }  // namespace
+ 
+ void Passes::Verilog::initialize(int argc, char** argv) {
+-  cxxopts::Options options("verilog", "translates coreir graph to verilog and optionally inlines primitives");
+-  options.add_options()
+-    ("i,inline","Inline verilog modules if possible")
+-    ("y,verilator_debug","Mark IO and intermediate wires as /*verilator_public*/")
+-  ;
+-  auto opts = options.parse(argc,argv);
+-  if (opts.count("i")) {
+-    this->vmods._inline = true;
+-  }
+-  if (opts.count("y")) {
+-    this->vmods._verilator_debug = true;
++  for (int i = 0; i < argc; i++) {
++    if (argv[i][0] == 'i')
++      this->vmods._inline = true;
++    else if (argv[i][0] == 'y')
++      this->vmods._verilator_debug = true;
+   }
+ }
+ 
