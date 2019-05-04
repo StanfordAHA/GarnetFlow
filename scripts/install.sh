@@ -24,4 +24,7 @@ tar zxvf halide_distrib.tgz
 ls distrib
 cd ../
 
+# install Genesis
+git clone https://github.com/StanfordVLSI/Genesis2.git
+
 date
