@@ -13,3 +13,4 @@ make garnet_verilog
 
 # build apps
 make pointwise
+make gaussian
