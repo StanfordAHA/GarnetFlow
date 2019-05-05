@@ -27,7 +27,7 @@ pip install --ignore-installed coreir
 
 # clone other repos
 git clone --branch simple_mapper https://github.com/StanfordAHA/garnet
-git clone --branch --depth 1 fix_abi https://github.com/StanfordAHA/Halide-to-Hardware
+git clone --branch fix_abi --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
 
 # install Genesis and apply patch
 git clone https://github.com/StanfordVLSI/Genesis2
