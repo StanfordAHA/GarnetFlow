@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/bin/bash -e
 
 SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
