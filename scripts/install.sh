@@ -4,11 +4,13 @@ SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 
 # build coreir here
-git clone https://github.com/leonardt/pycoreir.git
-# apply coreir custom patch
+git clone https://github.com/Kuree/pycoreir.git
 git clone https://github.com/rdaly525/coreir pycoreir/coreir-cpp
-# need to remove this once the bug in coreir is fixed
-# cd pycoreir/coreir-cpp && git apply /GarnetFlow/patches/coreir_path_cxxopt && cd /GarnetFlow
+# build coreir normally
+cd pycoreir/coreir-cpp/build && cmake .. && make -j2 && cd /GarnetFlow
+
+# apply pycoreir patch so that it won't trying to install
+
 pip install -e pycoreir/
 
 # install this last since we already have a coreir built
