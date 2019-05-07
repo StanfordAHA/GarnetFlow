@@ -1,0 +1,11 @@
+diff --git a/apps/hardware_benchmarks/hw_support/Makefile.inc b/apps/hardware_benchmarks/hw_support/Makefile.inc
+index 4989e1891..309cfe302 100644
+--- a/apps/hardware_benchmarks/hw_support/Makefile.inc
++++ b/apps/hardware_benchmarks/hw_support/Makefile.inc
+@@ -10,5 +10,5 @@ include ../../../support/Makefile.inc
+ 
+ # For CoreIR generation
+ #-D_GLIBCXX_USE_CXX11_ABI=0
+-COREIR_CXX_FLAGS = -I $(COREIR_DIR)/include -L$(COREIR_DIR)/lib -Wl,-rpath,$(COREIR_DIR)/lib 
++COREIR_CXX_FLAGS = -I $(COREIR_DIR)/include -L$(COREIR_DIR)/lib -Wl,-rpath,$(COREIR_DIR)/lib -D_GLIBCXX_USE_CXX11_ABI=0
+ CXXFLAGS += $(COREIR_CXX_FLAGS)
