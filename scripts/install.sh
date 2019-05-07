@@ -4,7 +4,7 @@
 # download the prebuilt Halide library
 git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
 cd Halide-to-Hardware
-curl -o release_file https://api.github.com/repos/StanfordAHA/Halide-to-Hardware/releases/latest?access_token=$GITHUB_TOKEN
+curl -o release_file -u Kuree:$GITHUB_TOKEN https://api.github.com/repos/StanfordAHA/Halide-to-Hardware/releases/latest
 cat release_file
 grep browser_download_url release_file | cut -d '"' -f 4 | wget -qi -
 tar zxvf halide_distrib.tgz
