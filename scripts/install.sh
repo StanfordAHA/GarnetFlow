@@ -8,7 +8,7 @@ git clone https://github.com/leonardt/pycoreir.git
 # apply coreir custom patch
 git clone https://github.com/rdaly525/coreir pycoreir/coreir-cpp
 # need to remove this once the bug in coreir is fixed
-cd pycoreir/coreir-cpp && git apply /GarnetFlow/patches/coreir_path_cxxopt && cd /GarnetFlow
+# cd pycoreir/coreir-cpp && git apply /GarnetFlow/patches/coreir_path_cxxopt && cd /GarnetFlow
 pip install -e pycoreir/
 
 # install this last since we already have a coreir built
