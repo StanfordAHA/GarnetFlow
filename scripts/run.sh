@@ -1,7 +1,8 @@
-#!/bin/bash -xe
+#!/bin/bash -e
 
 export COREIR_DIR=/GarnetFlow/pycoreir/coreir-cpp
 export OUTPUT_REDIRECTION=""
+export USE_CXX11_ABI=0
 
 # add Genesis to the path
 export GENESIS_HOME=/GarnetFlow/Genesis2/Genesis2Tools

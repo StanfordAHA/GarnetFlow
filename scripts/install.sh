@@ -31,8 +31,6 @@ rm -rf Genesis2/Genesis2Tools/PerlLibs/ExtrasForOldPerlDistributions/Compress
 
 # download the prebuilt Halide library
 cd Halide-to-Hardware
-# apply Halide patch
-git apply /GarnetFlow/patches/halide-hardware
 curl -s https://api.github.com/repos/StanfordAHA/Halide-to-Hardware/releases/latest?access_token=$GITHUB_TOKEN | grep browser_download_url | cut -d '"' -f 4 | wget -qi -
 tar zxvf halide_distrib.tgz
 ls distrib
