@@ -31,7 +31,7 @@ To attach to the running container, simply do
 docker attach garnet
 ```
 
-You can stop and container and then remove it by invoking
+You can stop a container and then remove it by invoking
 ```Bash
 docker stop garnet
 docker rm garnet
