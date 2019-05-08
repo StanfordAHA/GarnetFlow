@@ -31,8 +31,10 @@ rm -rf Genesis2/Genesis2Tools/PerlLibs/ExtrasForOldPerlDistributions/Compress
 
 # download the prebuilt Halide library
 cd Halide-to-Hardware
-export RELEASE_ADDR=https://api.github.com/repos/StanfordAHA/Halide-to-Hardware/releases/latest
-curl -X GET -u $GITHUB_TOKEN:x-oauth-basic ${RELEASE_ADDR} | grep browser_download_url | cut -d '"' -f 5 | wget -qi -
+# I give up. someone else can try it.
+# export RELEASE_ADDR=https://api.github.com/repos/StanfordAHA/Halide-to-Hardware/releases/latest
+# curl -X GET -u $GITHUB_TOKEN:x-oauth-basic ${RELEASE_ADDR} | grep browser_download_url | cut -d '"' -f 5 | wget -qi -
+wget https://github.com/StanfordAHA/Halide-to-Hardware/releases/download/v0.0.3/halide_distrib.tgz
 tar zxvf halide_distrib.tgz
 ls distrib
 cd ../
