@@ -5,7 +5,7 @@ Reliable end-to-end test flow for Garnet
 
 # How to run locally
 You need to have docker installed on your local machine. Please follow
-[this guid](https://docs.docker.com/install/) to install Docker CE version.
+[this guide](https://docs.docker.com/install/) to install Docker CE version.
 
 After installing docker, please follow the commands below
 ```Bash
