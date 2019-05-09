@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-export COREIR_DIR=/GarnetFlow/pycoreir/coreir-cpp
+export COREIR_DIR=/GarnetFlow/coreir
 export OUTPUT_REDIRECTION=""
 export USE_CXX11_ABI=0
 

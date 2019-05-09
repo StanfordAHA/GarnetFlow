@@ -4,26 +4,21 @@ SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 
 # build coreir here
-git clone --depth 1 https://github.com/leonardt/pycoreir.git
-git clone --depth 1 https://github.com/rdaly525/coreir pycoreir/coreir-cpp
-
-pip install -e pycoreir/
+git clone --depth 1 https://github.com/rdaly525/coreir coreir
+# there is a bug in ABI with regex
+# see https://github.com/rdaly525/coreir/issues/737
+cd coreir && \
+    git apply /GarnetFlow/patches/coreir_path_cxxopt && \
+    cd /GarnetFlow
+cd coreir/build && cmake .. && make -j2 && cd /GarnetFlow
 
 # install this last since we already have a coreir built
 pip install -r ${REQUIREMENTS}
 
-# re-compile again with the patch
-# there is a bug in ABI with regex
-# see https://github.com/rdaly525/coreir/issues/737
-cd pycoreir/coreir-cpp && \
-    git apply /GarnetFlow/patches/coreir_path_cxxopt && \
-    cd build && \
-    make -j2 && \
-    cd /GarnetFlow
 
 # clone other repos
 git clone --branch simple_mapper --depth 1 https://github.com/StanfordAHA/garnet
-git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
+git clone --depth 1 --branch fix_new_compiler https://github.com/StanfordAHA/Halide-to-Hardware
 
 # install Genesis and apply patch
 git clone --depth 1 https://github.com/StanfordVLSI/Genesis2

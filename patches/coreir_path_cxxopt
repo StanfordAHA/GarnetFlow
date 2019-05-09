@@ -1,5 +1,18 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 63bed1a..3b59b4b 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -20,6 +20,8 @@ if (STATIC)
+     endif()
+ endif()
+ 
++add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
++
+ set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -fPIC -Werror ${STATIC_FLAGS}")
+ 
+ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 diff --git a/src/passes/analysis/verifyconnectivity.cpp b/src/passes/analysis/verifyconnectivity.cpp
-index e3898f06..8678ca66 100644
+index e3898f0..8678ca6 100644
 --- a/src/passes/analysis/verifyconnectivity.cpp
 +++ b/src/passes/analysis/verifyconnectivity.cpp
 @@ -1,6 +1,5 @@
@@ -34,7 +47,7 @@ index e3898f06..8678ca66 100644
  }
  
 diff --git a/src/passes/analysis/verilog.cpp b/src/passes/analysis/verilog.cpp
-index 67ad1bf1..29cf69c8 100644
+index 67ad1bf..29cf69c 100644
 --- a/src/passes/analysis/verilog.cpp
 +++ b/src/passes/analysis/verilog.cpp
 @@ -2,7 +2,6 @@
