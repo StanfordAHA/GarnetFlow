@@ -7,7 +7,8 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends git gcc-8 g++-8 python3 \
             python3-pip verilator cmake llvm-8 clang-8 curl wget \
             libigraph0-dev zlib1g-dev libpng-dev libjpeg-dev python3-dev \
-            python3-setuptools make python3-wheel libncurses5-dev && \
+            python3-setuptools make python3-wheel libncurses5-dev \
+            csh imagemagick && \
         apt-get clean
 
 RUN ln -s /usr/bin/python3 /usr/bin/python && \
