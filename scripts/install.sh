@@ -18,7 +18,7 @@ pip install -r ${REQUIREMENTS}
 
 # clone other repos
 git clone --branch simple_mapper --depth 1 https://github.com/StanfordAHA/garnet
-git clone --depth 1 --branch fix_new_compiler https://github.com/StanfordAHA/Halide-to-Hardware
+git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
 
 # install Genesis and apply patch
 git clone --depth 1 https://github.com/StanfordVLSI/Genesis2
