@@ -1,11 +1,11 @@
-magma-lang
+-e git+https://github.com/phanrahan/magma.git#egg=magma-lang
 mantle
 jmapper
 fault
 -e git+https://github.com/Kuree/cgra_pnr#egg=pkg\&subdirectory=thunder
 -e git+https://github.com/Kuree/cgra_pnr#egg=pkg\&subdirectory=cyclone
 archipelago
--e git+https://github.com/StanfordAHA/gemstone#egg=gemstone
+-e git+https://github.com/StanfordAHA/gemstone@perf#egg=gemstone
 -e git+https://github.com/StanfordAHA/canal@fix_core_feature#egg=canal
 -e git+https://github.com/phanrahan/peak.git#egg=peak
 -e git+https://github.com/StanfordAHA/lassen.git@fixed_pe#egg=lassen
