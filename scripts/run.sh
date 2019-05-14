@@ -20,4 +20,4 @@ make pointwise
 make conv_1_2
 make conv_2_1
 # disable gaussian for now
-make gaussian
+make conv_3_3

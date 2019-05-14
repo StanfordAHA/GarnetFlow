@@ -3,7 +3,7 @@ WIDTH ?= 12
 HEIGHT ?= 12
 
 APPS = pointwise gaussian
-TESTS = conv_1_2 conv_2_1
+TESTS = conv_1_2 conv_2_1 conv_3_3
 
 garnet/garnet.v:
 	cd garnet && python garnet.py -v --width $(WIDTH) --height $(HEIGHT) --interconnect-only 1> /dev/null
