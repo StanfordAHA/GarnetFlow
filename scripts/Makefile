@@ -3,7 +3,7 @@ WIDTH ?= 12
 HEIGHT ?= 12
 
 APPS = pointwise gaussian
-TESTS = conv_1_2
+TESTS = conv_1_2 conv_2_1
 
 garnet/garnet.v:
 	cd garnet && python garnet.py -v --width $(WIDTH) --height $(HEIGHT) --interconnect-only 1> /dev/null
@@ -24,6 +24,6 @@ $(APPS): garnet_verilog
 	cp $(HALIDE_DIR)/apps/$@/bin/design_top.json /tmp/$@.json
 	make -C $(HALIDE_DIR)/apps/$@ bin/input.raw && cp $(HALIDE_DIR)/apps/$@/bin/input.raw /tmp/$@_input.raw
 	make -C $(HALIDE_DIR)/apps/$@ bin/output_cpu.raw && cp $(HALIDE_DIR)/apps/$@/bin/output_cpu.raw /tmp/$@_gold.raw
-	cd garnet && python garnet.py --width 12 --height 12 --input-app /tmp/$@.json \
+	cd garnet && python garnet.py --width $(WIDTH) --height $(HEIGHT) --input-app /tmp/$@.json \
 		--interconnect-only --no-pd --input-file /tmp/$@_input.raw --output-file /tmp/$@.bs --gold-file /tmp/$@_gold.raw
 	cd garnet && python tbg.py garnet.v garnet_stub.v /tmp/$@.bs.json
