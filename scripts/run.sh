@@ -15,4 +15,5 @@ make garnet_verilog
 # build apps
 make pointwise
 make conv_1_2
-make gaussian
+# disable gaussian for now
+# make gaussian
