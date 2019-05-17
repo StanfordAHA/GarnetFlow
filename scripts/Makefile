@@ -1,4 +1,4 @@
-HALIDE_DIR := /GarnetFlow/Halide-to-Hardware/apps/hardware_benchmarks
+HALIDE_DIR := /GarnetFlow/scripts/Halide-to-Hardware/apps/hardware_benchmarks
 WIDTH ?= 12
 HEIGHT ?= 12
 
