@@ -27,3 +27,9 @@ make conv_1_2
 make conv_2_1
 # disable gaussian for now
 make conv_3_3
+
+if [ -n "$BUILDKITE" ];
+then
+    make gaussian
+    make cascade
+fi
