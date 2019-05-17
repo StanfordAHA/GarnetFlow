@@ -1,11 +1,11 @@
 #!/bin/bash -e
 
-export COREIR_DIR=/GarnetFlow/coreir
+export COREIR_DIR=/GarnetFlow/scrpits/coreir
 export OUTPUT_REDIRECTION=""
 export USE_CXX11_ABI=0
 
 # add Genesis to the path
-export GENESIS_HOME=/GarnetFlow/Genesis2/Genesis2Tools
+export GENESIS_HOME=/GarnetFlow/scripts/Genesis2/Genesis2Tools
 export PATH=$GENESIS_HOME/bin:$GENESIS_HOME/gui/bin:$PATH
 export PERL5LIB=$GENESIS_HOME/PerlLibs/ExtrasForOldPerlDistributions:$PERL5LIB
 

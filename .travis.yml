@@ -5,12 +5,11 @@ service: docker
 before_install:
     - docker pull keyiz/garnet-flow
     - docker run -d -it --name garnet keyiz/garnet-flow bash
-    - docker cp scripts/ garnet:/GarnetFlow
-    - docker cp patches/ garnet:/GarnetFlow/patches
-    - docker exec -i garnet bash -c "cd GarnetFlow && ./install.sh" 
+    - docker cp ../GarnetFlow garnet:/GarnetFlow
+    - docker exec -i garnet bash -c "cd GarnetFlow/scripts && ./install.sh" 
 
 script:
-    - docker exec -i garnet bash -c "cd GarnetFlow && ./run.sh" 
+    - docker exec -i garnet bash -c "cd GarnetFlow/scripts && ./run.sh" 
 
 notifications:
   email:

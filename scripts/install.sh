@@ -9,8 +9,8 @@ git clone --depth 1 https://github.com/rdaly525/coreir coreir
 # see https://github.com/rdaly525/coreir/issues/737
 cd coreir && \
     git apply /GarnetFlow/patches/coreir_path_cxxopt && \
-    cd /GarnetFlow
-cd coreir/build && cmake .. && make -j2 && cd /GarnetFlow
+    cd ..
+cd coreir/build && cmake .. && make -j2 && cd ../../
 
 # install this last since we already have a coreir built
 pip install -r ${REQUIREMENTS}
