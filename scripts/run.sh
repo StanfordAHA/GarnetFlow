@@ -9,8 +9,14 @@ export GENESIS_HOME=/GarnetFlow/scripts/Genesis2/Genesis2Tools
 export PATH=$GENESIS_HOME/bin:$GENESIS_HOME/gui/bin:$PATH
 export PERL5LIB=$GENESIS_HOME/PerlLibs/ExtrasForOldPerlDistributions:$PERL5LIB
 
-export WIDTH=10
-export HEIGHT=9
+if [ -n "$BUILDKITE" ];
+then
+    export WIDTH=16
+    export HEIGHT=16
+else
+    export WIDTH=10
+    export HEIGHT=9
+fi
 
 # build CGRA
 make garnet_verilog
