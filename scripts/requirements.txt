@@ -1,7 +1,7 @@
 -e git+https://github.com/phanrahan/magma.git#egg=magma-lang
 mantle
 jmapper
--e git+https://github.com/leonardt/fault@add_num_cycle#egg=fault
+-e git+https://github.com/leonardt/fault#egg=fault
 -e git+https://github.com/Kuree/cgra_pnr#egg=pkg\&subdirectory=thunder
 -e git+https://github.com/Kuree/cgra_pnr#egg=pkg\&subdirectory=cyclone
 archipelago
