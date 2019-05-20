@@ -20,10 +20,6 @@ pip install -r ${REQUIREMENTS}
 git clone --branch simple_mapper --depth 1 https://github.com/StanfordAHA/garnet
 git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
 
-# install Genesis and apply patch
-git clone --depth 1 https://github.com/StanfordVLSI/Genesis2
-rm -rf Genesis2/Genesis2Tools/PerlLibs/ExtrasForOldPerlDistributions/Compress
-
 # download the prebuilt Halide library
 cd Halide-to-Hardware
 # I give up. someone else can try it.
