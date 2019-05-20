@@ -20,6 +20,9 @@ make garnet_verilog
 make pointwise
 make conv_1_2
 make conv_2_1
+make scomp
+make ucomp
+make arith
 # disable gaussian for now
 make conv_3_3
 

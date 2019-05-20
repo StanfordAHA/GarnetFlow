@@ -2,8 +2,8 @@ HALIDE_DIR := /GarnetFlow/scripts/Halide-to-Hardware/apps/hardware_benchmarks
 WIDTH ?= 12
 HEIGHT ?= 12
 
-APPS = pointwise gaussian cascade
-TESTS = conv_1_2 conv_2_1 conv_3_3 ucomp
+APPS = pointwise gaussian cascade harris
+TESTS = conv_1_2 conv_2_1 conv_3_3 ucomp scomp arith
 
 garnet/garnet.v:
 	cd garnet && python garnet.py -v --width $(WIDTH) --height $(HEIGHT) --interconnect-only 1> /dev/null
