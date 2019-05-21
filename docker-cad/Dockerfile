@@ -10,3 +10,5 @@ RUN apt-get update && \
         ln -fs /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && \
         dpkg-reconfigure --frontend noninteractive tzdata && \
         apt-get clean
+
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
