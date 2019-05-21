@@ -8,5 +8,5 @@ archipelago
 -e git+https://github.com/StanfordAHA/gemstone#egg=gemstone
 -e git+https://github.com/StanfordAHA/canal@fix_core_feature#egg=canal
 -e git+https://github.com/phanrahan/peak.git#egg=peak
--e git+https://github.com/StanfordAHA/lassen.git@test_rtl#egg=lassen
+-e git+https://github.com/StanfordAHA/lassen.git#egg=lassen
 -e git+https://github.com/rdaly525/MetaMapper.git#egg=metamapper
