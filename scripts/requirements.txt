@@ -1,3 +1,4 @@
+-e git+https://github.com/leonardt/hwtypes@fp#egg=hwtypes
 -e git+https://github.com/phanrahan/magma.git#egg=magma-lang
 mantle
 jmapper
