@@ -11,4 +11,4 @@ RUN apt-get update && \
         dpkg-reconfigure --frontend noninteractive tzdata && \
         apt-get clean
 
-# RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh

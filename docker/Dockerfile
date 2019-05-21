@@ -5,13 +5,11 @@ LABEL maintainer="keyi@cs.stanford.edu"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git gcc-8 g++-8 python3 \
-            python3-pip verilator cmake llvm-8 clang-8 curl wget \
+            python3-pip verilator cmake clang-8 build-essential curl wget \
             libigraph0-dev zlib1g-dev libpng-dev libjpeg-dev python3-dev \
             python3-setuptools make python3-wheel libncurses5-dev \
             csh imagemagick libgmp-dev libmpfr-dev libmpc-dev && \
         apt-get clean
 
 RUN ln -s /usr/bin/python3 /usr/bin/python && \
-    ln -s /usr/bin/pip3 /usr/bin/pip && \
-    ln -s /usr/bin/gcc-8 /usr/bin/gcc && \
-    ln -s /usr/bin/g++-8 /usr/bin/g++
+    ln -s /usr/bin/pip3 /usr/bin/pip
