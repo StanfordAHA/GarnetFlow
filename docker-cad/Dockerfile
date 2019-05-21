@@ -1,4 +1,4 @@
-FROM keyiz/garnet-flow:0.03
+FROM keyiz/garnet-flow
 
 LABEL description="A docker image for Garnet test flow with cad"
 LABEL maintainer="keyi@cs.stanford.edu"
