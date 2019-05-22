@@ -1,0 +1,70 @@
+[
+    {
+        "name": "magma-lang",
+        "type": "git",
+        "url": "https://github.com/phanrahan/magma.git",
+        "branch": "master"
+    },
+    {
+        "name": "mantle",
+        "type": "pypi"
+    },
+    {
+        "name": "jmapper",
+        "type": "pypi"
+    },
+    {
+        "name": "archipelago",
+        "type": "pypi"
+    },
+    {
+        "name": "fault",
+        "type": "git",
+        "url": "https://github.com/leonardt/fault",
+        "branch": "master"
+    },
+        {
+        "name": "pythunder",
+        "type": "git",
+        "url": "https://github.com/Kuree/cgra_pnr",
+        "branch": "master",
+        "subdir": "thunder"
+    },
+    {
+        "name": "pycyclone",
+        "type": "git",
+        "url": "https://github.com/Kuree/cgra_pnr",
+        "branch": "master",
+        "subdir": "cyclone"
+    },
+    {
+        "name": "gemstone",
+        "type": "git",
+        "url": "https://github.com/StanfordAHA/gemstone",
+        "branch": "master"
+    },
+    {
+        "name": "canal",
+        "type": "git",
+        "url": "https://github.com/StanfordAHA/canal",
+        "branch": "fix_core_feature"
+    },
+    {
+        "name": "peak",
+        "type": "git",
+        "url": "https://github.com/phanrahan/peak",
+        "branch": "master"
+    },
+    {
+        "name": "lassen",
+        "type": "git",
+        "url": "https://github.com/StanfordAHA/lassen",
+        "branch": "master"
+    },
+    {
+        "name": "metamapper",
+        "type": "git",
+        "url": "https://github.com/rdaly525/MetaMapper",
+        "branch": "master"
+    }
+]

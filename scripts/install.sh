@@ -13,8 +13,9 @@ cd coreir && \
 cd coreir/build && cmake .. && make -j2 && cd ../../
 
 # install this last since we already have a coreir built
-pip install -r ${REQUIREMENTS}
+python python_repo.py
 
+pip install -r ${REQUIREMENTS}
 
 # clone other repos
 git clone --branch simple_mapper --depth 1 https://github.com/StanfordAHA/garnet
