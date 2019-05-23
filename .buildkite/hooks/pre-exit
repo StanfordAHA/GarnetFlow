@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/bin/bash -e
 SUCCESS="SUCCESS"
 if [[ -f "`(pwd)`/.TEST" && "$SUCESS" == "$(cat `(pwd)`/.TEST)" ]]; then
     status="success"
