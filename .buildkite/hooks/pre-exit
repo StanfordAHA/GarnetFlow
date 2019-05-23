@@ -1,6 +1,6 @@
 #!/bin/bash -e
 SUCCESS="SUCCESS"
-if [[ -f "`(pwd)`/.TEST" && "$SUCESS" == "$(cat `(pwd)`/.TEST)" ]]; then
+if [[ -f "`(pwd)`/.TEST" && ${SUCCESS} == "$(cat `(pwd)`/.TEST)" ]]; then
     status="success"
 else
     status="failure"
