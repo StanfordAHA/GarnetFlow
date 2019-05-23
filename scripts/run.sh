@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+exit
+
 export COREIR_DIR=/GarnetFlow/scripts/coreir
 export OUTPUT_REDIRECTION=""
 export USE_CXX11_ABI=0

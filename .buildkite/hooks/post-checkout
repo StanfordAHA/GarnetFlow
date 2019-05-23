@@ -1,3 +1,3 @@
 #!/bin/bash -e
-cat `(pwd)`/.TEST
 rm -rf `(pwd)`/.TEST
+touch `(pwd)`/.TEST

@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+exit
+
 SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 
