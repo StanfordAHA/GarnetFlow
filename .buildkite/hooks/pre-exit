@@ -1,7 +1,50 @@
-#!/bin/bash -xe
-cat `(pwd)`/.TEST
-rm -rf `(pwd)`/.TEST
-if [ -n $FLOW_REPO ];
-then
-    echo $FLOW_REPO
-fi
+#!/usr/bin/python
+
+import os
+import json
+import httplib
+
+
+# only need to report back if we have build id set
+if not os.path.isfile(".TEST"):
+    assert False, ".TEST file not found"
+
+with open(".TEST") as f:
+    content = f.read().strip()
+
+if content != "SUCCESS":
+    status = "failure"
+else:
+    status = "success"
+
+# remove the test lock
+os.remove(".TEST")
+
+if "FLOW_ORG" not in os.environ:
+    exit()
+
+org = os.environ["FLOW_ORG"]
+repo = os.environ["FLOW_REPO"]
+aha_token = os.environ["AHA_FLOW_TOKEN"]
+head_sha = os.environ["FLOW_HEAD_SHA"]
+flow_id = os.environ["FLOW_ID"]
+base_url = os.environ["FLOW_URL"]
+
+entry_point = "/aha-flow-app/hook"
+
+# send the http request
+payload = {
+        "org": org,
+        "repo": repo,
+        "head_sha": head_sha,
+        "status": "completed",
+        "conclusion": status,
+        "id": flow_id
+}
+header = {"Authorization": aha_token, "content-type": "application/json"}
+# strip the protocol
+base_url = base_url.split("://")[-1]
+conn = httplib.HTTPSConnection(base_url)
+conn.request("POST", entry_point, json.dumps(payload), header)
+res = conn.getresponse()
+print(res.read())
