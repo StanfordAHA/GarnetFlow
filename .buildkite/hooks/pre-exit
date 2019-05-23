@@ -1,3 +1,7 @@
-#!/bin/bash -e
+#!/bin/bash -xe
 cat `(pwd)`/.TEST
 rm -rf `(pwd)`/.TEST
+if [ -n $FLOW_REPO ];
+then
+    echo $FLOW_REPO
+fi
