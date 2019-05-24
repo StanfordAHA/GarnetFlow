@@ -1,4 +1,5 @@
 #!/bin/bash -e
+cat `(pwd)`/.TEST
 if [[ "SUCCESS" == "$(cat `(pwd)`/.TEST)" ]]; then
     status="success"
 else
