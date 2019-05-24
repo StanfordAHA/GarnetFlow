@@ -1,19 +1,23 @@
 Test summaries:
+* [README_jade](README_jade.md)
+
+* [garnet](garnet.md)
+* [lassen](lassen.md)
+* [memory](memory.md)
 
 
-
-
-
-
-<pre>
-To build garnet test summary:
-
-  mkdir tmp
-  bin/fetch_travis_build_history.py StanfordAHA/garnet master -o tmp/garnet_build.txt
-  bin/build_nice_summary.sh tmp/garnet_build.txt > garnet.md
+To build test summaries:
+  alias fb=bin/fetch_travis_build_history.py; alias bns=bin/build_nice_summary.sh
+  fb StanfordAHA/garnet master -o tmpfile;         bns tmpfile > garnet.md
+  fb StanfordAHA/lassen master -o tmpfile;         bns tmpfile > lassen.md
+  fb StanfordAHA/garnet memory_core_db -o tmpfile; bns tmpfile > memory.md WOOHOO!
 
 Make sure "geckodriver" is in your path. On kiwi it is in /usr/local/lib
 
+
+
+# NOTES
+<pre>
 These work so far (v0):
   alias fb=bin/fetch_travis_build_history.py; alias bns=bin/build_nice_summary.sh
   fb StanfordAHA/garnet master -o tmpfile; bns tmpfile > garnet.md
