@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from pyvirtualdisplay import Display
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -117,11 +117,15 @@ def launch_browser():
 
     # Set up a profile and launch the browser
     profile = webdriver.FirefoxProfile()
-    profile.set_preference(
-        "general.useragent.override",
-        "Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0")
-    profile.set_preference("javascript.enabled", True)
+
+# Seems to work without this(?? verify! ??)
+#     profile.set_preference(
+#         "general.useragent.override",
+#         "Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0")
+# #     profile.set_preference("javascript.enabled", True)
+
     browser = webdriver.Firefox(profile)
+
     return(browser, display)
 
 
@@ -161,7 +165,7 @@ def process_args():
         # FIXME could/should maybe default to "master"
         sys.stderr.write("ERROR branch not specified"); print_usage_and_exit(13);
     if VERBOSE:
-        print(f"Fetching repo '{repo}' branch '{branch}'")
+        print(f"Will fetch repo '{repo}' branch '{branch}'")
     return (repo,branch)
 
 # def get_travis_build_log(browser, url):
@@ -197,7 +201,7 @@ def reload_until_pattern_found(browser, url, pattern):
         # if not re.search("build-list", ps):
         if not re.search(pattern, ps):
             if VERBOSE:
-                print(" Try #%1d not got it, wait a sec. size=%1d" % (trynum,len(ps)))
+                print(" Try %1d not got it, wait a sec. size=%1d" % (trynum,len(ps)))
                 flush()
             # print(ps[0:1000])
             time.sleep(1)
@@ -207,7 +211,7 @@ def reload_until_pattern_found(browser, url, pattern):
             if '--keep_intermediates' in OPTIONS:
                 write_file(url,trynum,ps)
         else:
-            if VERBOSE: print(" Try #%1d got it!\n", trynum); sys.stdout.flush()
+            if VERBOSE: print(" Try %1d got it!\n" % trynum); sys.stdout.flush()
             break
 
     if trynum >= max_tries:
