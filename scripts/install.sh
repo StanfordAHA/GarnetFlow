@@ -1,7 +1,5 @@
 #!/bin/bash -e
 
-exit
-
 SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 
@@ -12,10 +10,12 @@ git clone --depth 1 https://github.com/rdaly525/coreir coreir
 cd coreir && \
     git apply /GarnetFlow/patches/coreir_path_cxxopt && \
     cd ..
-cd coreir/build && cmake .. && make -j2 && cd ../../
+#cd coreir/build && cmake .. && make -j2 && cd ../../
 
 # install this last since we already have a coreir built
 python python_repo.py
+
+exit
 
 # clone other repos
 git clone --branch simple_mapper --depth 1 https://github.com/StanfordAHA/garnet
