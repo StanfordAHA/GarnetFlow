@@ -17,6 +17,7 @@ curl -X POST ${FLOW_URL}/aha-flow-app/hook \
     "head_sha": "'${FLOW_HEAD_SHA}'",
     "status": "'completed'",
     "conclusion": "'${status}'",
-    "id": "'${FLOW_ID}'"
+    "id": "'${FLOW_ID}'",
+    "url": "'${BUILDKITE_BUILD_URL}'"
     }'
 fi
