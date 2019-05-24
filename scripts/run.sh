@@ -1,7 +1,5 @@
 #!/bin/bash -e
 
-exit
-
 export COREIR_DIR=/GarnetFlow/scripts/coreir
 export OUTPUT_REDIRECTION=""
 export USE_CXX11_ABI=0
@@ -11,8 +9,8 @@ then
     export WIDTH=16
     export HEIGHT=16
 else
-    export WIDTH=10
-    export HEIGHT=9
+    export WIDTH=4
+    export HEIGHT=4
 fi
 
 # build CGRA
@@ -26,10 +24,10 @@ make scomp
 make ucomp
 make arith
 # disable gaussian for now
-make conv_3_3
 
 if [ -n "$BUILDKITE" ];
 then
+    make conv_3_3
     make gaussian
     make cascade
 fi

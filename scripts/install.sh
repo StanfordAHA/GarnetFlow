@@ -15,8 +15,6 @@ cd coreir && \
 # install this last since we already have a coreir built
 python python_repo.py
 
-exit
-
 # clone other repos
 git clone --branch simple_mapper --depth 1 https://github.com/StanfordAHA/garnet
 git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
