@@ -84,7 +84,18 @@ elem.send_keys(Keys.CONTROL, 'v') #paste
 
 INSTALL
   sudo apt-get install xvfb
-  sudo pip install pyvirtualdisplay
+  sudo pip3 install pyvirtualdisplay
+  sudo pip3 install selenium
+
+  # INSTALL PROBLEMS
+  >>>CHECK FIREFOX PATH ('which firefox') and make sure it's not /cad :(
+  - may need to reset path e.g. 
+  export PATH=.:/home/steveri/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin
+
+  # INSTALL PROBLEMS
+  # Weird "main not found" error when trying to run pip3, solve by doing this:
+  sudo python3 -m pip uninstall pip && sudo apt install python3-pip --reinstall
+
 
 SAMPLE SCRAPER
   from pyvirtualdisplay import Display
