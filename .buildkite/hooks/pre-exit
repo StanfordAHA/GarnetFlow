@@ -1,5 +1,5 @@
 #!/bin/bash -e
-if [[ -f "`(pwd)`/.TEST" ]]; then
+if [[ ! -f "`(pwd)`/.TEST" ]]; then
     status="success"
 else
     status="failure"
