@@ -16,7 +16,8 @@ cd coreir/build && cmake .. && make -j2 && cd ../../
 python python_repo.py
 
 # clone other repos
-git clone --branch simple_mapper --depth 1 https://github.com/StanfordAHA/garnet
+git clone --depth 1 https://github.com/StanfordAHA/garnet
+cd garnet && git checkout fa345f498bd8f56d4f4485ccaeb1bfc16714bb02 && cd ..
 git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
 
 # download the prebuilt Halide library
