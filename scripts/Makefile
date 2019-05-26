@@ -27,3 +27,8 @@ $(APPS): garnet_verilog
 	cd garnet && python garnet.py --width $(WIDTH) --height $(HEIGHT) --input-app /tmp/$@.json \
 		--interconnect-only --no-pd --input-file /tmp/$@_input.raw --output-file /tmp/$@.bs --gold-file /tmp/$@_gold.raw
 	cd garnet && python tbg.py garnet.v garnet_stub.v /tmp/$@.bs.json
+
+clean:
+	rm -rf garnet/garnet.v garnet/garnet_stub.v garnet/garnet_stub.sv
+	rm -rf garnet/temp/*
+	rm -rf garnet/genesis*
