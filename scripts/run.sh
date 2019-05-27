@@ -10,7 +10,7 @@ then
     export HEIGHT=16
 else
     export WIDTH=8
-    export HEIGHT=7
+    export HEIGHT=6
 fi
 
 # build CGRA
@@ -23,11 +23,11 @@ make conv_2_1
 make scomp
 make ucomp
 make arith
-make conv_3_3
 # disable gaussian for now
 
 if [ -n "$BUILDKITE" ];
 then
+    make conv_3_3
     make gaussian
     # make cascade
 fi
