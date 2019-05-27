@@ -10,7 +10,7 @@ then
     export HEIGHT=16
 else
     export WIDTH=8
-    export HEIGHT=8
+    export HEIGHT=7
 fi
 
 # build CGRA
