@@ -6,7 +6,7 @@ export USE_CXX11_ABI=0
 
 if [ -n "$BUILDKITE" ];
 then
-    export WIDTH=16
+    export WIDTH=32
     export HEIGHT=16
 else
     export WIDTH=8
@@ -23,7 +23,8 @@ make conv_2_1
 make scomp
 make ucomp
 make arith
-# disable gaussian for now
+make ushift
+make uminmax
 
 if [ -n "$BUILDKITE" ];
 then

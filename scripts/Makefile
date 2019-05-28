@@ -3,7 +3,7 @@ WIDTH ?= 12
 HEIGHT ?= 12
 
 APPS = pointwise gaussian cascade harris
-TESTS = conv_1_2 conv_2_1 conv_3_3 ucomp scomp arith
+TESTS = conv_1_2 conv_2_1 conv_3_3 ucomp scomp arith ushift uminmax
 
 garnet/garnet.v:
 	cd garnet && python garnet.py -v --width $(WIDTH) --height $(HEIGHT) --interconnect-only 1> /dev/null
