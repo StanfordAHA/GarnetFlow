@@ -1,5 +1,5 @@
 Test summaries:
-* [garnet](garnet.md[*])
+* [garnet](garnet.md\[*\])
 * [lassen](lassen.md)
 
 <small><i>
@@ -22,6 +22,7 @@ Make sure "geckodriver" is in your path. On kiwi it is in /usr/local/lib
 - still need pd, soc
 - cron job for test updates
 - checkmarks (above) for pass/fail
+
 
 
 #### Sources
