@@ -1,7 +1,5 @@
-
-garnet NO FAILS<br/>
-============= 43 passed, 1 skipped, 12 warnings in 344.27 seconds ==============
-
+## garnet NO FAILS
+43 passed, 1 skipped, 12 warnings<br/>
 [collateral_pass (2 tests)](    https://github.com/StanfordAHA/garnet/tree/master/tests/test_collateral_pass)<br/>
 [garnet (2 tests)](             https://github.com/StanfordAHA/garnet/tree/master/tests/test_garnet)<br/>
 [global_buffer (7 tests)](      https://github.com/StanfordAHA/garnet/tree/master/tests/test_global_buffer)<br/>
