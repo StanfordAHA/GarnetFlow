@@ -1,8 +1,10 @@
 Test summaries:
-[garnet](garnet.md) [*]
-[lassen](lassen.md)
+* [garnet](garnet.md[*])
+* [lassen](lassen.md)
 
-[*] Note Garnet test includes memory et al.
+<small><i>
+&nbsp;&nbsp;&nbsp;&nbsp; [*] Note Garnet test includes memory et al.
+</i></small>
 
 Still need: soc, power domain tests.
 
@@ -15,12 +17,12 @@ To build test summaries:
 Make sure "geckodriver" is in your path. On kiwi it is in /usr/local/lib
 
 #### TODO
-- update garnet.md to latest, should now include memory tests
-- delete memory.md in favor of garnet.md
 - better summary for lassen
 - lassen should probably come from buildkite instead of travis
-- mem: garnet memory_core_db branch
 - still need pd, soc
+- cron job for test updates
+- checkmarks (above) for pass/fail
+
 
 #### Sources
 [garnet](https://travis-ci.com/StanfordAHA/garnet/branches) (master)
@@ -50,6 +52,11 @@ DONE 1905
 - lassen v0
 - memory v0
 - move tests to new location...
+- update garnet.md to latest, should now include memory tests
+- delete memory.md in favor of garnet.md
+- mem: garnet memory_core_db branch
+
+
 </pre>
 
 
