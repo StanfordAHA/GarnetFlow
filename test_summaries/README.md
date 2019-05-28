@@ -1,6 +1,6 @@
 [collateral_pass (2 tests)](https://github.com/StanfordAHA/garnet/tree/master/tests/test_collateral_pass)
 
-[garnet (2 tests)](https://github.com/StanfordAHA/garnet/tree/master/tests/test_garnet)
+[garnet (2 tests)]       (https://github.com/StanfordAHA/garnet/tree/master/tests/test_garnet)
 
 [global_buffer (7 tests)](https://github.com/StanfordAHA/garnet/tree/master/tests/test_global_buffer)
 
