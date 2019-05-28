@@ -1,5 +1,5 @@
-#### garnet hw test summary (click links for more info)
-NO FAILS - 43 passed, 1 skipped, 12 warnings - [travis log](https://travis-ci.com/StanfordAHA/garnet/builds/113359834)<br/>
+## garnet
+NO FAILS - 43 passed, 1 skipped, 12 warnings - [complete travis log](https://travis-ci.com/StanfordAHA/garnet/builds/113359834)<br/>
 [collateral_pass (2 tests)](    https://github.com/StanfordAHA/garnet/tree/master/tests/test_collateral_pass)<br/>
 [garnet (2 tests)](             https://github.com/StanfordAHA/garnet/tree/master/tests/test_garnet)<br/>
 [global_buffer (7 tests)](      https://github.com/StanfordAHA/garnet/tree/master/tests/test_global_buffer)<br/>
