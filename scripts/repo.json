@@ -47,7 +47,7 @@
         "name": "canal",
         "type": "git",
         "url": "https://github.com/StanfordAHA/canal",
-        "branch": "fix_core_feature"
+        "branch": "master"
     },
     {
         "name": "peak",
