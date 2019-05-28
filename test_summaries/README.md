@@ -1,3 +1,21 @@
+[collateral_pass (2 tests)](https://github.com/StanfordAHA/garnet/tree/master/tests/test_collateral_pass)
+
+[garnet (2 tests)](https://github.com/StanfordAHA/garnet/tree/master/tests/test_garnet)
+
+[global_buffer (7 tests)](https://github.com/StanfordAHA/garnet/tree/master/tests/test_global_buffer)
+
+[global_controller (6 tests)](https://github.com/StanfordAHA/garnet/tree/master/tests/test_global_controller)
+
+[interconnect (9 tests)](https://github.com/StanfordAHA/garnet/tree/master/tests/test_interconnect)
+
+[io_core (4 tests)](https://github.com/StanfordAHA/garnet/tree/master/tests/test_io_core)
+
+[mapper (2 tests)](https://github.com/StanfordAHA/garnet/tree/master/tests/test_mapper)
+
+
+
+
+
 Test summaries:
 * [garnet\[*\]](garnet.md)
 * [lassen](lassen.md)
