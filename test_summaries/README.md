@@ -1,5 +1,5 @@
 Test summaries:
-* [garnet](garnet.md\[*\])
+* [garnet\[*\]](garnet.md)
 * [lassen](lassen.md)
 
 <small><i>
