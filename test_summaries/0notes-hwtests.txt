@@ -1,0 +1,336 @@
+1905 STATUS
+- project on hold for now, waiting for feedback from priyanka and pat
+
+
+1905 TODO
+- clean up fetch script, grep for "CLEAN" in bin/fetch_travis_build_history.py
+- automate the tests
+-- hourly cron job
+-- need ssh key for password-less login
+- clean up below
+- checkmarks for pass/fail?
+- still don't have power domain, soc tests
+- lassen tests should come from *buildkite*, not lassen I guess, see below
+- combine summary.md into README.md???
+
+
+buildkite link (can be reached via link/badge in lassen README):
+https://buildkite.com/stanford-aha/lassen/builds/31#4e5c3610-e444-418c-a958-f115e80d9bec
+
+HOW-TO make test summary
+  % make summary.md
+  % git diff summary.md
+
+==============================================================================
+DONE 1905 added info below to README
+# 
+# FOUND power domain test, it is this line in garnet travis log:
+# 
+# tests/test_interconnect/test_interconnect_cgra.py::test_interconnect_point_wise[True-100] PASSED [ 36%]
+# 
+# The "True" in square brackets means "test with power domains added". Also see
+# https://github.com/StanfordAHA/garnet/blob/master/tests/test_interconnect/test_interconnect_cgra.py
+# 
+# 
+# -----
+# pd test:
+# 
+# 1. Garnet RTL: 
+# https://github.com/StanfordAHA/garnet/blob/master/tests/test_interconnect/test_interconnect_cgra.py
+# : Please check for add_pd flag. All the tests are parameterized to run
+# with this flag either 0/1. When add_pd=1, all power domain related
+# logic is added and tested.
+
+
+==============================================================================
+NOTES/OLD
+
+DONE 1905
+- advertise progress
+-- update README
+
+DONE 1905
+- move to github
+- eliminate geckodriver log, see bin/geckodriver --help
+- consolidate 0notes etc
+- include URL,date in garnet_summary, something like:
+  "Latest travis log <url>, dated <date>"
+- garnet v0
+- lassen v0
+- memory v0
+- move tests to new location...
+- update garnet.md to latest, should now include memory tests
+- delete memory.md in favor of garnet.md
+- mem: garnet memory_core_db branch
+
+
+------------------------------------------------------------------------------
+
+1905 DONE
+- Current location: AHADocs/garnet/hwtests
+- New location: GarnetFlow/test_summaries
+
+
+==============================================================================
+Install in StanforAHA/doc/garnet/hwtests/ for now at least...
+
+
+
+fetch_garnet.py StanfordAHA/garnet master
+Most recent build for branch 'master': /StanfordAHA/garnet/builds/112517637
+
+https://travis-ci.com/StanfordAHA/garnet/builds
+https://travis-ci.com/StanfordAHA/garnet/builds/112517637
+https://api.travis-ci.com/v3/job/201654926/log.txt
+https://api.travis-ci.com/v3/job/201384714/log.txt
+------------------------------------------------------------------------
+Five tests (so far) to find: memory, garnet, lassen, pd, and soc.
+
+* garnet/memory: memory_core_db branch
+  https://github.com/StanfordAHA/garnet/tree/memory_core_db/tests/test_memory_core
+
+* garnet/{top,gb,gc,interconnect}, try:
+  curl -u steveri https://travis-ci.com/StanfordAHA/garnet |& less
+
+------------------------------------------------------------------------------
+I found archive of builds of travis ci in the following link:
+  https://s3.amazonaws.com/archive.travis-ci.org/jobs/6073028/log.txt
+or
+  https://api.travis-ci.org/v3/job/6073028/log.txt
+  https://api.travis-ci.org/v3/job/201384714/log.txt
+
+Just replace the number of your job id
+  Build id: 112386759
+  Job id: 201384714
+------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------
+fb.log0:Most recent build for branch 'master': /StanfordAHA/garnet/builds/112517637
+https://travis-ci.com/StanfordAHA/garnet/builds/112517637
+https://api.travis-ci.com/v3/job/201654926/log.txt
+
+you're supposed to use WAITS
+https://selenium-python.readthedocs.io/waits.html#waits
+
+
+DONE
+- build fetch_travis_build StanfordAHA/garnet master
+
+==============================================================================
+1905 SELENIUM NOTES
+
+Selenium links
+  http://scraping.pro/use-headless-firefox-scraping-linux/
+  https://selenium-python.readthedocs.io/navigating.html
+  https://selenium-python.readthedocs.io/installation.html
+
+------------------------------------------------------------------------------
+from selenium.webdriver.common.keys import Keys
+
+elem = find_element_by_name("our_element")
+elem.send_keys("bar")
+elem.send_keys(Keys.CONTROL, 'a') #highlight all in box
+elem.send_keys(Keys.CONTROL, 'c') #copy
+elem.send_keys(Keys.CONTROL, 'v') #paste
+
+INSTALL
+  sudo apt-get install xvfb
+  sudo pip3 install pyvirtualdisplay
+  sudo pip3 install selenium
+
+  # INSTALL PROBLEMS
+  >>>CHECK FIREFOX PATH ('which firefox') and make sure it's not /cad :(
+  - may need to reset path e.g. 
+  export PATH=.:/home/steveri/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin
+
+  # INSTALL PROBLEMS
+  # Weird "main not found" error when trying to run pip3, solve by doing this:
+  sudo python3 -m pip uninstall pip && sudo apt install python3-pip --reinstall
+
+
+SAMPLE SCRAPER
+  from pyvirtualdisplay import Display
+  from selenium import webdriver
+
+  display = Display(visible=0, size=(800, 600))
+  display.start()
+
+  browser = webdriver.Firefox()
+  browser.get('http://www.google.com')
+  print browser.title
+  browser.quit()
+
+  display.stop()
+
+INSTALL latest gecko driver
+  rnum=24
+  mozilla=https://github.com/mozilla/geckodriver/releases/download
+  wget $mozilla/v0.$rnum.0/geckodriver-v0.$rnum.0-linux64.tar.gz
+  tar -xvzf geckodriver*gz
+  /bin/rm geckodriver*gz
+
+==============================================================================
+# MAIL thread archives 1905
+# ------------------------------------------------------------------------------
+# On Wednesday, May 15, 2019, 11:17:22 AM PDT, Maxwell Bradley Strange
+# <mstrange@stanford.edu> wrote:
+# 
+# I actually refactored into a different branch - the tests for the memory core are in
+# memory_core_db under tests/test_memory_core/test_memory_core.py
+# 
+# 
+# From: Priyanka Raina <praina@stanford.edu>
+# Date: Wednesday, May 15, 2019 at 10:46 AM
+# To: Stephen E Richardson <steveri@stanford.edu>
+#  
+# Here are some of the locations of unit tests:
+# 
+# - garnet/tests - This has top level, global buffer, global controller,
+#   and interconnect test. For memory, this has the old tests, the new
+#   tests are in memory_core_impl branch which will be hopefully merged soon.
+# 
+# - lassen/tests - This has the PE tests. I am not sure if lassen tests
+#   are run again in garnet once the PE is instantiated.
+# 
+# - Ankita is integrating the power domain tests, she would know where
+#   they are.
+# 
+# - James has SoC tests in the repo on the arm/tsmc machine. It might be
+#   okay to extract the test log for the dashboard.
+# 
+# Thanks, Priyanka
+#  
+# 
+# On Wed, May 15, 2019 at 8:46 AM Stephen Richardson <steveri@stanford.edu> wrote:
+# 
+#     Below is my summary / liberal interpretation of Priyanka's
+#     test-related action items from previous mail. Have there been any
+#     updates on these? Also: should we add these to our goals list(s)
+#     in https://github.com/StanfordAHA/Private/blob/master/goals ?
+#     And/or can we discuss at today's meeting?
+# 
+#     ...
+# 
+#     3. build a dashboard, similar to Jeff's spreadsheet, for hardware
+#        unit tests, perhaps auto-generated from pytest logs
+# 
+#     * [is there someone in the hardware group that can take this on?
+#       And/or I can help with the scripts that generate the table, if
+#       someone can point me to the various tests that currently run...?]
+# 
+#     Steve
+
+
+==============================================================================
+OLD selenium browser windows NOT USED 1905
+# window_before = driver.window_handles[0]
+# after clicking the link store the window handle of newly opened window as
+# window_after = driver.window_handles[1]
+# then execute the switch to window methow to move to newly opened window
+# driver.switch_to_window(window_after)
+
+==============================================================================
+Ankita mail about pd tests:
+
+    Ankita Nayak <ankitan@stanford.edu>
+    To:Stephen E Richardson,Keyi Zhang,Makai Michael Mann,Leonard Truong,Mark A Horowitz
+    May 29 at 11:53 AM
+
+    Hi Steve,    Sorry, I should have responded to your earlier email.
+    Here are all the power domain related tests:
+
+
+    COMPLETED
+
+    1. Garnet RTL: 
+    https://github.com/StanfordAHA/garnet/blob/master/tests/test_interconnect/test_interconnect_cgra.py
+    : Please check for add_pd flag. All the tests are parameterized to
+    run with this flag either 0/1. When add_pd=1, all power domain
+    related logic is added and tested.
+
+    2. Gemstone RTL:
+    https://github.com/StanfordAHA/gemstone/blob/master/tests/common/test_mux_aoi.py
+    : These are MUX level tests at Gemstone for the AOI and AOI-const
+    muxes
+
+    3. Power aware gate level assertions
+    https://github.com/StanfordAHA/garnet/tree/tapeout/tapeout_16/gls
+    : These are gate level assertions to ensure the correct behavior
+    of ON tiles, OFF tiles, global buffers etc. and Xprop tests for
+    AOI-mux/AOI-const-mux
+
+
+    IN PROGRESS
+
+    1. RTL level CoSA based formal verification
+    Makai had coded up these assertions and they look good. He is
+    working with Keyi on integrating them in Garnet framework.
+
+    2.  Gate level CoSA based formal verification
+    Makai is implementing the gate level assertions in NCSIM (item 3
+    from above section) in CoSA.
+
+    3. Fault Xprop test:
+    https://github.com/leonardt/fault/tree/poke-x
+    Lenny has a branch for Xprop tests (corresponding to AOI mux NCSIM
+    tests in item 3 from above section). It's pending on me for
+    testing if it works fine.
+
+    4. Fault gate level tests
+    https://github.com/leonardt/fault/blob/master/fault/power_tester.py
+    Lenny has setup Fault to do gate level tests. The verification is
+    pending on compatibility of TSMC machine with the needed packages
+    for garnet/fault. I will try to iron this out today.
+
+    Let me know if there are any questions. Thanks!
+
+    Ankita
+
+
+    From: chipgenerator <chipgenerator-bounces@lists.stanford.edu> on behalf of Stephen Richardson <steveri@stanford.edu>
+    Sent: Wednesday, May 29, 2019 10:55:58 AM
+    To: Priyanka Raina; AHA List
+    Subject: [AHA] Dashboard for HW tests
+     
+    Pursuant to the discussion at last week's meeting. I assume that
+    by now Pat and Priyanka will have come up with a better way to
+    track hardware tests.
+
+    Meanwhile, even though we may not be needing it anymore, I thought
+    would go ahead and wrap up my half-finished dashboard project
+    before moving on to the next thing.
+
+    My hardware test summary/dashboard can be found here:
+    https://github.com/StanfordAHA/GarnetFlow/blob/test_summaries/test_summaries/summary.md
+
+    ...also see explanatory README file
+    https://github.com/StanfordAHA/GarnetFlow/blob/test_summaries/test_summaries
+    https://github.com/StanfordAHA/GarnetFlow/blob/test_summaries/test_summaries/README.md
+
+    The summary includes garnet and lassen tests; unfortunately, I
+    never yet found tests for power domain and SoC. Unless I get a
+    request from an interested party, that probably won't happen at
+    this point.
+
+    If you look at the summary, you can see e.g. that lassen/pe.py is
+    our most-tested component, with 470 tests. Garnet/mapper on the
+    other hand, for example, has only one. Of course this is not the
+    whole story; to see the actual tests you have to click on the
+    links and look at python code. There, you would see that
+    e.g. pe.py unsigned_binary tests consist of 16 random tests
+    generated by an NTESTS=16 parameter, which presumably can be
+    increased or decreased. The mapper.py link, on the other hand,
+    reveals that the mapper indeed does only a single test, mapping
+    the pointwise application, after which it signals good or bad for
+    the test.
+
+    Okay, well there it is FWIW...I look forward to the better thing
+    that should be coming, and/or when we know what that is, I will
+    help where I can.
+
+    Thanks!
+    Steve
+
+

@@ -33,15 +33,28 @@ noprint == 0   { print      }
 
 # exit
 
+# sed 's/^tests.test_//'
+#   tests/test_garnet/test_garnet.py PASSED... =>
+#   garnet/test_garnet.py PASSED...
+# 
+# sed 's|^[^/]*/test_||' \
+#   garnet/test_garnet.py PASSED... =>
+#   garnet.py PASSED... =>
+
+
+
+#   | sed 's/^tests.test_//' \
+#   | sed 's|^[^/]*/test_||' \
+
+
 
 # Pretty it up and print it
 cat /tmp/ptcleanup2.$$ \
   | egrep -v '^(platform|cachedir|rootdir|plugins|collecting)' \
   | sed 's/^tests.test_//' \
-  | sed 's|^[^/]*/test_||' \
   | awk '
     # /%]$/ { print "FOO " $0 }
-    /%]$/ { printf("%-64s %-8s %-8s\n", $1, $2, substr($0, length($0)-5, 6)); next }
+    /%]$/ { printf("%-50s     %-8s %-8s\n", substr($1,1,50), $2, substr($0, length($0)-5, 6)); next }
     { print }
   '
 
