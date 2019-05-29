@@ -3,10 +3,14 @@
 
 
 1905 TODO
+- automate the tests
+-- hourly cron job
+-- need ssh key for password-less login
 - clean up below
 - checkmarks for pass/fail?
 - still don't have power domain, soc tests
 - lassen tests should come from *buildkite*, not lassen I guess, see below
+
 
 buildkite link (can be reached via link/badge in lassen README):
 https://buildkite.com/stanford-aha/lassen/builds/31#4e5c3610-e444-418c-a958-f115e80d9bec
