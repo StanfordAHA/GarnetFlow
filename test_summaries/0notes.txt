@@ -1,8 +1,34 @@
-Current location: AHADocs/garnet/hwtests
-New location: GarnetFlow/test_summaries
+1905 TODO
+- advertise progress
+-- update README
+- clean up below
+- checkmarks for pass/fail?
+
+HOW-TO make test summary
+  % make summary.md
+  % git diff summary.md
 
 
+DONE 1905
+- move to github
+- eliminate geckodriver log, see bin/geckodriver --help
+- consolidate 0notes etc
+- include URL,date in garnet_summary, something like:
+  "Latest travis log <url>, dated <date>"
+- garnet v0
+- lassen v0
+- memory v0
+- move tests to new location...
+- update garnet.md to latest, should now include memory tests
+- delete memory.md in favor of garnet.md
+- mem: garnet memory_core_db branch
 
+
+------------------------------------------------------------------------------
+
+1905 DONE
+- Current location: AHADocs/garnet/hwtests
+- New location: GarnetFlow/test_summaries
 
 
 ==============================================================================
