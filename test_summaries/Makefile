@@ -11,9 +11,9 @@ summary:
 	mv summary.md summary.old.$(DATE).$(PID)
 	make lassen
 	make garnet
-	$(SUM) lassen.md >> summary.md
-	echo ""          >> summary.md
 	$(SUM) garnet.md >> summary.md
+	echo ""          >> summary.md
+	$(SUM) lassen.md >> summary.md
 	diff summary.old.$(DATE).$(PID) summary.md \
 	  && echo 'no change'\
 	  || (echo ""; echo "Changes are ready to be checked in to repo")
