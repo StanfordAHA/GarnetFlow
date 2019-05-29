@@ -9,7 +9,7 @@ drawn from the following travis logs (latest master branch):
 &nbsp;&nbsp;&nbsp;&nbsp;
 [lassen](https://travis-ci.com/StanfordAHA/lassen/branches) (lassen)
 
-<b>Power domain</b> test is represented by this line in the garnet log:<br/>
+<b>Power domain</b> test is represented by this line in the garnet log<br/>
 `tests/test_interconnect/test_interconnect_cgra.py::test_interconnect_point_wise[True-100] PASSED [ 36%]`
 <br/>
 The "True" in square brackets means "test with power domains added". Also see
