@@ -79,14 +79,17 @@ f=$1
 repo="${f%.*}"
 
 if [[ "$repo" == "lassen" ]]; then
-  # Collapse     "lut.py::test_lut_unary[op0]" => lut.py::test_lut_unary
-  # mapper only: "mapper.py::test_io"          => mapper.py
+  # Expand pe.py into its "::" subcategories e.g.
+  #  "pe.py::test_unsigned_binary[args0-op0]" => "pe.py::test_unsigned_binary"
+  # All others get collpased all the way to top level e.g.
+  #   "complex.py::test_fma[args8]" => "complex.py"
+  #
+  # Then do something stupid to put pe.py last
   sed -n '/test session starts/,/===\|overage/'p $f\
     | awk '
       ! /::/ { next; }
-      $1 == "lut.py::test_lut" { print $1; next; }
-      /mapper/   { gsub(/::.*/, "", $1) ; print $1 }
-      ! /mapper/ { gsub(/\[.*/, "", $1)  ; print $1 }
+      /^pe.py/ { gsub(/\[.*/, "", $1)  ; print $1; next; }
+      { gsub(/::.*/, "", $1) ; print $1 }
     '\
     | uniq -c \
     | awk '
@@ -95,7 +98,12 @@ if [[ "$repo" == "lassen" ]]; then
       { gsub(/::.*/, "", $2) }
       { URL = "https://github.com/StanfordAHA/'$repo'/tree/master/tests/test_" $2 }
       { printf("%-45s%s)<br/>\n", t, URL) }
-    '
+    '\
+    > /tmp/tmp$$
+    grep -v pe.py /tmp/tmp$$
+    grep pe.py /tmp/tmp$$
+    rm /tmp/tmp$$
+
 
 elif [[ "$repo" == "garnet" ]]; then
   sed -n '/test session starts/,/===\|overage/'p $f\
