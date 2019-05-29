@@ -77,22 +77,69 @@ sep='/'
 
 f=$1
 repo="${f%.*}"
-sed -n '/test session starts/,/===\|overage/'p $f\
-  | sed 's|::|/|g'\
-  | awk -F $sep   '/['$sep']/ {print $1}'\
-  | uniq -c \
-  | awk '
+
+if [[ "$repo" == "lassen" ]]; then
+  # Collapse     "lut.py::test_lut_unary[op0]" => lut.py::test_lut_unary
+  # mapper only: "mapper.py::test_io"          => mapper.py
+  sed -n '/test session starts/,/===\|overage/'p $f\
+    | awk '
+      ! /::/ { next; }
+      $1 == "lut.py::test_lut" { print $1; next; }
+      /mapper/   { gsub(/::.*/, "", $1) ; print $1 }
+      ! /mapper/ { gsub(/\[.*/, "", $1)  ; print $1 }
+    '\
+    | uniq -c \
+    | awk '
+      { ntests = $1 }
+      { t=sprintf("[%s (%d test%s)](", $2, ntests, ntests==1?"":"s") }
+      { gsub(/::.*/, "", $2) }
+      { URL = "https://github.com/StanfordAHA/'$repo'/tree/master/tests/test_" $2 }
+      { printf("%-45s%s)<br/>\n", t, URL) }
+    '
+
+elif [[ "$repo" == "garnet" ]]; then
+  sed -n '/test session starts/,/===\|overage/'p $f\
+    | sed 's|::|/|g'\
+    | awk -F $sep   '/['$sep']/ {print $1}'\
+    | uniq -c \
+    | awk '
       { ntests = $1; if ("'$repo'" == "garnet") ntests = ntests - 1; }
       { t=sprintf("[%s (%d test%s)](", $2, ntests, ntests==1?"":"s") }
       { URL = "https://github.com/StanfordAHA/'$repo'/tree/master/tests/test_" $2 }
       { printf("%-32s%s)<br/>\n", t, URL) }
-'
+  '
+fi
+
+# tests/test_lut.py::test_lut_unary[op0] PASSED                            [  3%]
+# tests/test_lut.py::test_lut_ternary[op0] PASSED                          [  3%]
+# tests/test_lut.py::test_lut PASSED                                       [  4%]
+# tests/test_mapper.py::test_discover SKIPPED                              [  4%]
+# tests/test_mapper.py::test_const PASSED                                  [  4%]
+# tests/test_mapper.py::test_io PASSED                                     [  4%]
+# tests/test_mapper.py::test_float PASSED                                  [  4%]
+# tests/test_mapper.py::test_fp_pointwise PASSED                           [  5%]
+# tests/test_mapper.py::test_serialize PASSED                              [  5%]
+# tests/test_mapper.py::test_rules PASSED                                  [  5%]
+# tests/test_mapper.py::test_binary_lut[and] PASSED                        [  5%]
+# tests/test_mapper.py::test_binary_lut[or] PASSED                         [  5%]
+# tests/test_mapper.py::test_binary_lut[xor] PASSED                        [  6%]
+# tests/test_mapper.py::test_init PASSED                                   [  6%]
+# tests/test_pe.py::test_unsigned_binary[args0-op0] PASSED                 [  6%]
+# tests/test_pe.py::test_unsigned_binary[args0-op1] PASSED                 [  6%]
 
 
 
 
-
-
+#   sed -n '/test session starts/,/===\|overage/'p $f\
+#     | sed 's|::|/|g'\
+#     | awk -F $sep   '/['$sep']/ {print $1}'\
+#     | uniq -c \
+#     | awk '
+#       { ntests = $1; if ("'$repo'" == "garnet") ntests = ntests - 1; }
+#       { t=sprintf("[%s (%d test%s)](", $2, ntests, ntests==1?"":"s") }
+#       { URL = "https://github.com/StanfordAHA/'$repo'/tree/master/tests/test_" $2 }
+#       { printf("%-32s%s)<br/>\n", t, URL) }
+#   '
 
 
 
