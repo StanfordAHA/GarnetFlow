@@ -46,7 +46,7 @@ Jeff's software testing dashboard is located in this Google spreadsheet (in subs
 https://docs.google.com/spreadsheets/d/1GLqlCGaTXMDLW3QqCXK0XX1zOzP0UyoJ9eXDo75xpDg/ 
 
 <b>Notes</b><br/>
-For more information see `0notes.txt`
+For more information see `0notes.txt`.
 
 
 
