@@ -1,13 +1,31 @@
+1905 STATUS
+- project on hold for now, waiting for feedback from priyanka and pat
+
+
 1905 TODO
-- advertise progress
--- update README
 - clean up below
 - checkmarks for pass/fail?
+- still don't have power domain, soc tests
+- lassen tests should come from *buildkite*, not lassen I guess, see below
+
+buildkite link (can be reached via link/badge in lassen README):
+https://buildkite.com/stanford-aha/lassen/builds/31#4e5c3610-e444-418c-a958-f115e80d9bec
+
+
+
+
 
 HOW-TO make test summary
   % make summary.md
   % git diff summary.md
 
+
+==============================================================================
+NOTES/OLD
+
+DONE 1905
+- advertise progress
+-- update README
 
 DONE 1905
 - move to github
@@ -63,19 +81,6 @@ Just replace the number of your job id
   Build id: 112386759
   Job id: 201384714
 ------------------------------------------------------------------------------
-
-
-
-
-
-
-
-------------------------------------------------------------------------
-
-
-
-
-
 
 
 
@@ -197,7 +202,7 @@ INSTALL latest gecko driver
 
 
 ==============================================================================
-OLD windows NOT USED 1905
+OLD selenium browser windows NOT USED 1905
 # window_before = driver.window_handles[0]
 # after clicking the link store the window handle of newly opened window as
 # window_after = driver.window_handles[1]

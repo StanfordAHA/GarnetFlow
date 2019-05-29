@@ -12,13 +12,15 @@ drawn from the following travis logs (latest master branch):
 Not included (yet) are <b>power domain</b> and <b>SoC</b> tests. 
 We have not yet identified a source for those.
 
-<i><b>NOTE</b> lassen tests should probably be coming from buildkit and not travis (right?).</i>
+<i><b>NOTE</b> lassen tests should probably be coming from buildkit
+and not travis (right?).</i>
 
 <b>Generating the summary manually</b><br/>
 Test summaries are built via the following command sequence 
 (usually I do this from kiwi):
 <pre>
   % make summary
+  % git diff summary.md
   % git add summary.md
   % git commit -m 'test summary update'
   % git push
