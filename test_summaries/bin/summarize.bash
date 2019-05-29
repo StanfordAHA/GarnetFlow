@@ -82,7 +82,8 @@ sed -n '/test session starts/,/===\|overage/'p $f\
   | awk -F $sep   '/['$sep']/ {print $1}'\
   | uniq -c \
   | awk '
-      { t=sprintf("[%s (%d tests)](", $2, $1) }
+      { ntests = $1; if ("'$repo'" == "garnet") ntests = ntests - 1; }
+      { t=sprintf("[%s (%d test%s)](", $2, ntests, ntests==1?"":"s") }
       { URL = "https://github.com/StanfordAHA/'$repo'/tree/master/tests/test_" $2 }
       { printf("%-32s%s)<br/>\n", t, URL) }
 '

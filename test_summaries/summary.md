@@ -8,11 +8,11 @@ NO FAILS - 523 passed, 9 skipped - [complete travis log](https://travis-ci.com/S
 
 ## garnet
 NO FAILS - 51 passed, 1 skipped, 12 warnings - [complete travis log](https://travis-ci.com/StanfordAHA/garnet/builds/113530689)<br/>
-[collateral_pass (2 tests)](    https://github.com/StanfordAHA/garnet/tree/master/tests/test_collateral_pass)<br/>
-[garnet (2 tests)](             https://github.com/StanfordAHA/garnet/tree/master/tests/test_garnet)<br/>
-[global_buffer (7 tests)](      https://github.com/StanfordAHA/garnet/tree/master/tests/test_global_buffer)<br/>
-[global_controller (6 tests)](  https://github.com/StanfordAHA/garnet/tree/master/tests/test_global_controller)<br/>
-[interconnect (17 tests)](      https://github.com/StanfordAHA/garnet/tree/master/tests/test_interconnect)<br/>
-[io_core (4 tests)](            https://github.com/StanfordAHA/garnet/tree/master/tests/test_io_core)<br/>
-[mapper (2 tests)](             https://github.com/StanfordAHA/garnet/tree/master/tests/test_mapper)<br/>
-[memory_core (12 tests)](       https://github.com/StanfordAHA/garnet/tree/master/tests/test_memory_core)<br/>
+[collateral_pass (1 test)](     https://github.com/StanfordAHA/garnet/tree/master/tests/test_collateral_pass)<br/>
+[garnet (1 test)](              https://github.com/StanfordAHA/garnet/tree/master/tests/test_garnet)<br/>
+[global_buffer (6 tests)](      https://github.com/StanfordAHA/garnet/tree/master/tests/test_global_buffer)<br/>
+[global_controller (5 tests)](  https://github.com/StanfordAHA/garnet/tree/master/tests/test_global_controller)<br/>
+[interconnect (16 tests)](      https://github.com/StanfordAHA/garnet/tree/master/tests/test_interconnect)<br/>
+[io_core (3 tests)](            https://github.com/StanfordAHA/garnet/tree/master/tests/test_io_core)<br/>
+[mapper (1 test)](              https://github.com/StanfordAHA/garnet/tree/master/tests/test_mapper)<br/>
+[memory_core (11 tests)](       https://github.com/StanfordAHA/garnet/tree/master/tests/test_memory_core)<br/>
