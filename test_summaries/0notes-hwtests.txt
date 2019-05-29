@@ -11,6 +11,7 @@
 - checkmarks for pass/fail?
 - still don't have power domain, soc tests
 - lassen tests should come from *buildkite*, not lassen I guess, see below
+- combine summary.md into README.md???
 
 
 buildkite link (can be reached via link/badge in lassen README):
