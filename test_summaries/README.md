@@ -1,4 +1,4 @@
-Latest test summary is in [summary.md](summary.md)
+Latest test summary is here: [summary.md](summary.md)
 
 So far it includes information from Lassen and Garnet, 
 drawn from the following travis logs (latest master branch):
@@ -12,9 +12,8 @@ drawn from the following travis logs (latest master branch):
 Not included (yet) are <b>power domain</b> and <b>SoC</b> tests. 
 We have not yet identified a source for those.
 
-#### Generating the summary manually
-
-Test summaries are build via the following command sequence 
+<b>Generating the summary manually</b><br/>
+Test summaries are built via the following command sequence 
 (usually I do this from kiwi):
 <pre>
   % make summary
@@ -26,13 +25,11 @@ Test summaries are build via the following command sequence
 For the build to succeed, you must have "geckodriver installed and in
 your path.On kiwi it is in /usr/local/lib.
 
-#### Generating the summary automatically
-
+<b>Generating the summary automatically</b><br/>
 Soon I hope to have a once-pre-hour cron job that will update
 summary.md automatically.
 
-#### Notes
-
+<b>Notes</b><br/>
 For more information see `0notes.txt`
 
 

@@ -76,13 +76,14 @@ echo "<br/>"
 sep='/'
 
 f=$1
+repo="${f%.*}"
 sed -n '/test session starts/,/===\|overage/'p $f\
   | sed 's|::|/|g'\
   | awk -F $sep   '/['$sep']/ {print $1}'\
   | uniq -c \
   | awk '
       { t=sprintf("[%s (%d tests)](", $2, $1) }
-      { URL = "https://github.com/StanfordAHA/garnet/tree/master/tests/test_" $2 }
+      { URL = "https://github.com/StanfordAHA/'$repo'/tree/master/tests/test_" $2 }
       { printf("%-32s%s)<br/>\n", t, URL) }
 '
 
