@@ -3,6 +3,7 @@
 
 
 1905 TODO
+- clean up fetch script, grep for "CLEAN" in bin/fetch_travis_build_history.py
 - automate the tests
 -- hourly cron job
 -- need ssh key for password-less login
@@ -15,13 +16,29 @@
 buildkite link (can be reached via link/badge in lassen README):
 https://buildkite.com/stanford-aha/lassen/builds/31#4e5c3610-e444-418c-a958-f115e80d9bec
 
-
-
-
-
 HOW-TO make test summary
   % make summary.md
   % git diff summary.md
+
+==============================================================================
+DONE 1905 added info below to README
+# 
+# FOUND power domain test, it is this line in garnet travis log:
+# 
+# tests/test_interconnect/test_interconnect_cgra.py::test_interconnect_point_wise[True-100] PASSED [ 36%]
+# 
+# The "True" in square brackets means "test with power domains added". Also see
+# https://github.com/StanfordAHA/garnet/blob/master/tests/test_interconnect/test_interconnect_cgra.py
+# 
+# 
+# -----
+# pd test:
+# 
+# 1. Garnet RTL: 
+# https://github.com/StanfordAHA/garnet/blob/master/tests/test_interconnect/test_interconnect_cgra.py
+# : Please check for add_pd flag. All the tests are parameterized to run
+# with this flag either 0/1. When add_pd=1, all power domain related
+# logic is added and tested.
 
 
 ==============================================================================
@@ -212,4 +229,107 @@ OLD selenium browser windows NOT USED 1905
 # window_after = driver.window_handles[1]
 # then execute the switch to window methow to move to newly opened window
 # driver.switch_to_window(window_after)
+
+==============================================================================
+Ankita mail about pd tests:
+
+    Ankita Nayak <ankitan@stanford.edu>
+    To:Stephen E Richardson,Keyi Zhang,Makai Michael Mann,Leonard Truong,Mark A Horowitz
+    May 29 at 11:53 AM
+
+    Hi Steve,    Sorry, I should have responded to your earlier email.
+    Here are all the power domain related tests:
+
+
+    COMPLETED
+
+    1. Garnet RTL: 
+    https://github.com/StanfordAHA/garnet/blob/master/tests/test_interconnect/test_interconnect_cgra.py
+    : Please check for add_pd flag. All the tests are parameterized to
+    run with this flag either 0/1. When add_pd=1, all power domain
+    related logic is added and tested.
+
+    2. Gemstone RTL:
+    https://github.com/StanfordAHA/gemstone/blob/master/tests/common/test_mux_aoi.py
+    : These are MUX level tests at Gemstone for the AOI and AOI-const
+    muxes
+
+    3. Power aware gate level assertions
+    https://github.com/StanfordAHA/garnet/tree/tapeout/tapeout_16/gls
+    : These are gate level assertions to ensure the correct behavior
+    of ON tiles, OFF tiles, global buffers etc. and Xprop tests for
+    AOI-mux/AOI-const-mux
+
+
+    IN PROGRESS
+
+    1. RTL level CoSA based formal verification
+    Makai had coded up these assertions and they look good. He is
+    working with Keyi on integrating them in Garnet framework.
+
+    2.  Gate level CoSA based formal verification
+    Makai is implementing the gate level assertions in NCSIM (item 3
+    from above section) in CoSA.
+
+    3. Fault Xprop test:
+    https://github.com/leonardt/fault/tree/poke-x
+    Lenny has a branch for Xprop tests (corresponding to AOI mux NCSIM
+    tests in item 3 from above section). It's pending on me for
+    testing if it works fine.
+
+    4. Fault gate level tests
+    https://github.com/leonardt/fault/blob/master/fault/power_tester.py
+    Lenny has setup Fault to do gate level tests. The verification is
+    pending on compatibility of TSMC machine with the needed packages
+    for garnet/fault. I will try to iron this out today.
+
+    Let me know if there are any questions. Thanks!
+
+    Ankita
+
+
+    From: chipgenerator <chipgenerator-bounces@lists.stanford.edu> on behalf of Stephen Richardson <steveri@stanford.edu>
+    Sent: Wednesday, May 29, 2019 10:55:58 AM
+    To: Priyanka Raina; AHA List
+    Subject: [AHA] Dashboard for HW tests
+     
+    Pursuant to the discussion at last week's meeting. I assume that
+    by now Pat and Priyanka will have come up with a better way to
+    track hardware tests.
+
+    Meanwhile, even though we may not be needing it anymore, I thought
+    would go ahead and wrap up my half-finished dashboard project
+    before moving on to the next thing.
+
+    My hardware test summary/dashboard can be found here:
+    https://github.com/StanfordAHA/GarnetFlow/blob/test_summaries/test_summaries/summary.md
+
+    ...also see explanatory README file
+    https://github.com/StanfordAHA/GarnetFlow/blob/test_summaries/test_summaries
+    https://github.com/StanfordAHA/GarnetFlow/blob/test_summaries/test_summaries/README.md
+
+    The summary includes garnet and lassen tests; unfortunately, I
+    never yet found tests for power domain and SoC. Unless I get a
+    request from an interested party, that probably won't happen at
+    this point.
+
+    If you look at the summary, you can see e.g. that lassen/pe.py is
+    our most-tested component, with 470 tests. Garnet/mapper on the
+    other hand, for example, has only one. Of course this is not the
+    whole story; to see the actual tests you have to click on the
+    links and look at python code. There, you would see that
+    e.g. pe.py unsigned_binary tests consist of 16 random tests
+    generated by an NTESTS=16 parameter, which presumably can be
+    increased or decreased. The mapper.py link, on the other hand,
+    reveals that the mapper indeed does only a single test, mapping
+    the pointwise application, after which it signals good or bad for
+    the test.
+
+    Okay, well there it is FWIW...I look forward to the better thing
+    that should be coming, and/or when we know what that is, I will
+    help where I can.
+
+    Thanks!
+    Steve
+
 

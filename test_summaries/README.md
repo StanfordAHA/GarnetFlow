@@ -9,7 +9,14 @@ drawn from the following travis logs (latest master branch):
 &nbsp;&nbsp;&nbsp;&nbsp;
 [lassen](https://travis-ci.com/StanfordAHA/lassen/branches) (lassen)
 
-Not included (yet) are <b>power domain</b> and <b>SoC</b> tests. 
+<b>Power domain</b> test is represented by this line in the garnet log:<br/>
+`tests/test_interconnect/test_interconnect_cgra.py::test_interconnect_point_wise[True-100] PASSED [ 36%]`
+<br/>
+The "True" in square brackets means "test with power domains added". Also see
+<br/>
+https://github.com/StanfordAHA/garnet/blob/master/tests/test_interconnect/test_interconnect_cgra.py
+
+Not included (yet) are <b>SoC</b> tests. 
 We have not yet identified a source for those.
 
 <i><b>NOTE</b> lassen tests should probably be coming from buildkit
