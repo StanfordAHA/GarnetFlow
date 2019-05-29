@@ -40,7 +40,7 @@ your path.On kiwi it is in /usr/local/lib.
 Soon I hope to have a once-pre-hour cron job that will update
 summary.md automatically.
 
-<b>Software test dashboard</b>
+<b>Software test dashboard</b><br/>
 Jeff's software testing dashboard is located in this Google spreadsheet (in subsheet "garnet")
 <br/>
 https://docs.google.com/spreadsheets/d/1GLqlCGaTXMDLW3QqCXK0XX1zOzP0UyoJ9eXDo75xpDg/ 
