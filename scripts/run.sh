@@ -4,7 +4,7 @@ export COREIR_DIR=/GarnetFlow/scripts/coreir
 export OUTPUT_REDIRECTION=""
 export USE_CXX11_ABI=0
 
-if [ -n "$lassen" ];
+if [ -n "$PR" ];
 then
     # people who maintain lassen love one-line commits
     # and file PR before the branch is working.
@@ -33,7 +33,7 @@ make arith
 make ushift
 make uminmax
 
-if [ -n "$BUILDKITE" ] && [ -z "$lassen" ];
+if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
 then
     make conv_3_3
     make gaussian
