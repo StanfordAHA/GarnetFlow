@@ -1,5 +1,11 @@
 [
     {
+        "name": "hwtypes",
+        "type": "git",
+        "url": "https://github.com/leonardt/hwtypes.git",
+        "branch": "master"
+    },
+    {
         "name": "magma-lang",
         "type": "git",
         "url": "https://github.com/phanrahan/magma.git",
