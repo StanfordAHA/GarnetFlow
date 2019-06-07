@@ -4,7 +4,9 @@ SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 
 # build coreir here
-git clone --depth 1 https://github.com/rdaly525/coreir coreir
+git clone https://github.com/rdaly525/coreir coreir
+# pin to a specific hash
+cd coreir && git reset --hard ffab82dbe85afeb55842d4ad3a21a5a06669d39b && cd ..
 # there is a bug in ABI with regex
 # see https://github.com/rdaly525/coreir/issues/737
 cd coreir && \
