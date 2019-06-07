@@ -16,7 +16,7 @@ then
     export WIDTH=32
     export HEIGHT=16
 else
-    export WIDTH=8
+    export WIDTH=7
     export HEIGHT=6
 fi
 
