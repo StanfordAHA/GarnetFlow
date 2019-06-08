@@ -13,6 +13,11 @@ export USE_CXX11_ABI := 0
 
 .PHONY: $(BITSTREAM) garnet_verilog
 
+garnet/garnet.v:
+	cd garnet && python garnet.py -v --width $(WIDTH) --height $(HEIGHT) --interconnect-only 1> /dev/null
+
+garnet_verilog: garnet/garnet.v
+
 define make-test
 # $1: $app
 # $2: dir, either apps or tests
