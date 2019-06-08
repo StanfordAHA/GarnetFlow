@@ -4,9 +4,7 @@ SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 
 # build coreir here
-git clone https://github.com/rdaly525/coreir coreir
-# pin to a specific hash
-cd coreir && git reset --hard ffab82dbe85afeb55842d4ad3a21a5a06669d39b && cd ..
+git clone --depth 1 https://github.com/rdaly525/coreir coreir
 # there is a bug in ABI with regex
 # see https://github.com/rdaly525/coreir/issues/737
 cd coreir && \
@@ -29,7 +27,7 @@ cd Halide-to-Hardware
 # I give up. someone else can try it.
 # export RELEASE_ADDR=https://api.github.com/repos/StanfordAHA/Halide-to-Hardware/releases/latest
 # curl -X GET -u $GITHUB_TOKEN:x-oauth-basic ${RELEASE_ADDR} | grep browser_download_url | cut -d '"' -f 5 | wget -qi -
-wget -q https://github.com/StanfordAHA/Halide-to-Hardware/releases/download/v0.0.5/halide_distrib.tgz
+wget -q https://github.com/StanfordAHA/Halide-to-Hardware/releases/download/v0.0.6/halide_distrib.tgz
 tar zxf halide_distrib.tgz
 ls distrib
 cd ../
