@@ -4,29 +4,39 @@ HEIGHT ?= 12
 
 APPS = pointwise gaussian cascade harris
 TESTS = conv_1_2 conv_2_1 conv_3_3 ucomp scomp arith ushift uminmax rom
+BITSTREAM = $(APPS) $(TESTS)
 
-garnet/garnet.v:
-	cd garnet && python garnet.py -v --width $(WIDTH) --height $(HEIGHT) --interconnect-only 1> /dev/null
+# env variables for halide
+export COREIR_DIR := /GarnetFlow/scripts/coreir
+export OUTPUT_REDIRECTION := ""
+export USE_CXX11_ABI := 0
 
-garnet_verilog: garnet/garnet.v
+.PHONY: $(BITSTREAM) garnet_verilog
 
-$(TESTS): garnet_verilog
-	make -C $(HALIDE_DIR)/tests/$@ bin/design_top.json 1> /dev/null
-	make -C $(HALIDE_DIR)/tests/$@ bin/input.raw && cp $(HALIDE_DIR)/tests/$@/bin/input.raw /tmp/$@_input.raw
-	make -C $(HALIDE_DIR)/tests/$@ bin/output_cpu.raw && cp $(HALIDE_DIR)/tests/$@/bin/output_cpu.raw /tmp/$@_gold.raw
-	cp $(HALIDE_DIR)/tests/$@/bin/design_top.json /tmp/$@.json
-	cd garnet && python garnet.py --width $(WIDTH) --height $(HEIGHT) --no-pd --input-app /tmp/$@.json \
-		--interconnect-only --input-file /tmp/$@_input.raw --output-file /tmp/$@.bs --gold-file /tmp/$@_gold.raw && cd ..
-	cd garnet && python tbg.py garnet.v garnet_stub.v /tmp/$@.bs.json
+define make-test
+# $1: $app
+# $2: dir, either apps or tests
+$1: $(addprefix /tmp/, $1.bs.out)
 
-$(APPS): garnet_verilog
-	make -C $(HALIDE_DIR)/apps/$@ bin/design_top.json 1> /dev/null
-	cp $(HALIDE_DIR)/apps/$@/bin/design_top.json /tmp/$@.json
-	make -C $(HALIDE_DIR)/apps/$@ bin/input.raw && cp $(HALIDE_DIR)/apps/$@/bin/input.raw /tmp/$@_input.raw
-	make -C $(HALIDE_DIR)/apps/$@ bin/output_cpu.raw && cp $(HALIDE_DIR)/apps/$@/bin/output_cpu.raw /tmp/$@_gold.raw
-	cd garnet && python garnet.py --width $(WIDTH) --height $(HEIGHT) --input-app /tmp/$@.json \
-		--interconnect-only --no-pd --input-file /tmp/$@_input.raw --output-file /tmp/$@.bs --gold-file /tmp/$@_gold.raw
-	cd garnet && python tbg.py garnet.v garnet_stub.v /tmp/$@.bs.json
+/tmp/$1.bs.out: garnet_verilog /tmp/$1.bs
+	cd garnet && python tbg.py garnet.v garnet_stub.v $(addprefix /tmp/, $1.bs.json)
+
+/tmp/$1.bs: $(addprefix /tmp/, $1.json)
+	cd garnet && python garnet.py --width $(WIDTH) --height $(HEIGHT) --no-pd --input-app /tmp/$1.json \
+		--interconnect-only --input-file /tmp/$1_input.raw --output-file /tmp/$1.bs --gold-file /tmp/$1_gold.raw && cd ..
+
+/tmp/$1.json:
+	@echo $(COREIR_DIR)
+	@echo ${OUTPUT_REDIRECTION}
+	@echo $(USR_CXX11_ABI)
+	make -C $(HALIDE_DIR)/$2/$1 bin/design_top.json 1> /dev/null
+	make -C $(HALIDE_DIR)/$2/$1 bin/input.raw && cp $(HALIDE_DIR)/$2/$1/bin/input.raw /tmp/$1_input.raw
+	make -C $(HALIDE_DIR)/$2/$1 bin/output_cpu.raw && cp $(HALIDE_DIR)/$2/$1/bin/output_cpu.raw /tmp/$1_gold.raw
+	cp $(HALIDE_DIR)/$2/$1/bin/design_top.json /tmp/$1.json
+endef
+
+$(foreach app, $(APPS), $(eval $(call make-test,$(app),apps)))
+$(foreach app, $(TESTS), $(eval $(call make-test,$(app),tests)))
 
 clean:
 	rm -rf garnet/garnet.v garnet/garnet_stub.v garnet/garnet_stub.sv

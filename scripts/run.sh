@@ -1,9 +1,5 @@
 #!/bin/bash -e
 
-export COREIR_DIR=/GarnetFlow/scripts/coreir
-export OUTPUT_REDIRECTION=""
-export USE_CXX11_ABI=0
-
 if [ -n "$PR" ];
 then
     # people who maintain lassen love one-line commits
@@ -25,14 +21,6 @@ make garnet_verilog
 
 # build apps
 make pointwise
-make conv_1_2
-make conv_2_1
-make scomp
-make ucomp
-make arith
-make ushift
-make uminmax
-make rom
 
 if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
 then
