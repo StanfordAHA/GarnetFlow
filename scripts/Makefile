@@ -3,7 +3,7 @@ WIDTH ?= 12
 HEIGHT ?= 12
 
 APPS = pointwise gaussian cascade harris
-TESTS = conv_1_2 conv_2_1 conv_3_3 ucomp scomp arith ushift uminmax rom
+TESTS = conv_1_2 conv_2_1 conv_3_3 ucomp scomp arith ushift uminmax rom absolute
 BITSTREAM = $(APPS) $(TESTS)
 
 # env variables for halide

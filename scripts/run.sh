@@ -21,6 +21,7 @@ make garnet_verilog
 
 # build apps
 make pointwise
+make absolute
 make conv_1_2
 make conv_2_1
 make scomp
