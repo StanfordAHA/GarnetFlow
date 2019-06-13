@@ -3,7 +3,7 @@
         "name": "hwtypes",
         "type": "git",
         "url": "https://github.com/leonardt/hwtypes.git",
-        "branch": "64d5e17e784bc0956f47b4fb8aa9734f219abcf9"
+        "branch": "master"
     },
     {
         "name": "magma-lang",
