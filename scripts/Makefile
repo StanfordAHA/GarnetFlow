@@ -9,7 +9,6 @@ BITSTREAM = $(APPS) $(TESTS)
 # env variables for halide
 export COREIR_DIR := /GarnetFlow/scripts/coreir
 export OUTPUT_REDIRECTION := ""
-export USE_CXX11_ABI := 0
 
 .PHONY: $(BITSTREAM) garnet_verilog
 
