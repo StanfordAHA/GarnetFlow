@@ -4,7 +4,7 @@ SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 
 # build coreir here
-git clone --depth 1 https://github.com/rdaly525/coreir coreir
+git clone --depth 1 --branch ubuffer https://github.com/rdaly525/coreir coreir
 # there is a bug in ABI with regex
 # see https://github.com/rdaly525/coreir/issues/737
 cd coreir && \
