@@ -15,6 +15,9 @@ cd coreir/build && cmake .. && make -j2 && cd ../../
 # install this last since we already have a coreir built
 python python_repo.py
 
+# pin pycoreir version since the latest one doesn't work
+pip install --ignore-installed coreir==2.0.19
+
 # install genesis2
 pip install genesis2
 
