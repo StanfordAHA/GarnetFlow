@@ -15,15 +15,14 @@ docker pull keyiz/garnet-flow
 # give the image a name "garnet" and run it in the background
 docker run -d -it --name garnet keyiz/garnet-flow bash
 
-# copy scripts and patches to the image top-level directory
-docker cp scripts/ garnet:/GarnetFlow
-docker cp patches/ garnet:/GarnetFlow/patches
+# clone the repo inside the docker
+docker exec -i garnet bash -c "git clone https://github.com/StanfordAHA/GarnetFlow"
 
 # build all dependences (this takes awhile!)
-docker exec -i garnet bash -c "cd GarnetFlow && ./install.sh"
+docker exec -i garnet bash -c "cd GarnetFlow/scripts && ./install.sh"
 
 # run the tests
-docker exec -i garnet bash -c "cd GarnetFlow && ./run.sh"
+docker exec -i garnet bash -c "cd GarnetFlow/scripts && ./run.sh"
 ```
 
 To attach to the running container, simply do
