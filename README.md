@@ -1,5 +1,5 @@
 # GarnetFlow
-[![Build Status](https://travis-ci.com/StanfordAHA/GarnetFlow.svg?branch=master)](https://travis-ci.com/StanfordAHA/GarnetFlow)
+[![Build status](https://badge.buildkite.com/add25d748b7fd726dd53849ccb561ab99e3a43067fc370dd73.svg)](https://buildkite.com/stanford-aha/garnetflow)
 
 Reliable end-to-end test flow for Garnet
 
