@@ -1,0 +1,24 @@
+steps:
+- commands:
+  - "source /cad/modules/tcl/init/sh"
+  - "module load base"
+  - "module load incisive"
+  - "cp -r /src /GarnetFlow"
+  - "cd /GarnetFlow/scripts && ./install.sh"
+  - "cd /GarnetFlow/scripts && ./run.sh"
+  - "rm -rf /src/.TEST"
+  plugins:
+    - docker#v3.2.0:
+        image: "keyiz/garnet-flow-cad"
+        always-pull: true
+        volumes:
+          - "/cad/:/cad"
+        workdir: /src
+        propagate-environment: true
+        shell: ["/bin/bash", "-e", "-c"]
+  agents:
+    docker: true
+  env:
+    FLOW_URL: "https://shielded-temple-72016.herokuapp.com"
+    AHA_FLOW_TOKEN: "xgCSpqtxmn94wU2BqS6g"
+
