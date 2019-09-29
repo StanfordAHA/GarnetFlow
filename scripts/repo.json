@@ -65,7 +65,7 @@
         "name": "lassen",
         "type": "git",
         "url": "https://github.com/StanfordAHA/lassen",
-        "branch": "master"
+        "branch": "cf581ac2647a49fd645cf8c0f43ed23a8c4061c5"
     },
     {
         "name": "metamapper",
