@@ -22,7 +22,7 @@ python python_repo.py
 pip install genesis2
 
 # clone other repos
-git clone --branch simple_mapper_assembler --depth 1 https://github.com/StanfordAHA/garnet
+git clone --branch simple_mapper --depth 1 https://github.com/StanfordAHA/garnet
 git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
 
 # download the prebuilt Halide library
