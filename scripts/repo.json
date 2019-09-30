@@ -59,13 +59,13 @@
         "name": "peak",
         "type": "git",
         "url": "https://github.com/phanrahan/peak",
-        "branch": "move-assembler-utils"
+        "branch": "master"
     },
     {
         "name": "lassen",
         "type": "git",
         "url": "https://github.com/StanfordAHA/lassen",
-        "branch": "hot-fix"
+        "branch": "master"
     },
     {
         "name": "metamapper",
