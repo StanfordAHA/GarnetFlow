@@ -4,7 +4,7 @@ SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 
 # build coreir here
-git clone --depth 1 --branch ubuffer https://github.com/rdaly525/coreir coreir
+git clone --depth 1 --branch rm-ubuf https://github.com/rdaly525/coreir coreir
 # there is a bug in ABI with regex
 # see https://github.com/rdaly525/coreir/issues/737
 cd coreir && \
@@ -23,7 +23,11 @@ pip install genesis2
 
 # clone other repos
 git clone --branch simple_mapper --depth 1 https://github.com/StanfordAHA/garnet
-git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
+git clone --branch rm-ubuf --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
+
+# create the lake repo
+git clone --branch master --depth 1 https://github.com/joyliu37/BufferMapping
+#...
 
 # download the prebuilt Halide library
 cd Halide-to-Hardware
