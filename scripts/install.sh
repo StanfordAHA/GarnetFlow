@@ -21,13 +21,17 @@ python python_repo.py
 # install genesis2
 pip install genesis2
 
-# clone other repos
-git clone --branch simple_mapper --depth 1 https://github.com/StanfordAHA/garnet
-git clone --branch rm-ubuf --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
+# clone garnet
+git clone --depth 1 https://github.com/StanfordAHA/garnet
 
 # create the lake repo
 git clone --branch master --depth 1 https://github.com/joyliu37/BufferMapping
-#...
+cd BufferMapping/cfunc
+make BufferMapping/cfunc
+cd ../../
+
+# create Halide
+git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
 
 # download the prebuilt Halide library
 cd Halide-to-Hardware
