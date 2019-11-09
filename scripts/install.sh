@@ -25,6 +25,7 @@ pip install genesis2
 git clone --depth 1 https://github.com/StanfordAHA/garnet
 
 # create the lake repo
+COREIR_DIR=/GarnetFlow/scripts/coreir # lake needs to know where coreir is
 git clone --branch master --depth 1 https://github.com/joyliu37/BufferMapping
 cd BufferMapping/cfunc
 make lib
