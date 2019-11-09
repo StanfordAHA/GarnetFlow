@@ -27,7 +27,7 @@ git clone --depth 1 https://github.com/StanfordAHA/garnet
 # create the lake repo
 git clone --branch master --depth 1 https://github.com/joyliu37/BufferMapping
 cd BufferMapping/cfunc
-make BufferMapping/cfunc
+make lib
 cd ../../
 
 # create Halide
