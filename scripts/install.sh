@@ -3,6 +3,7 @@
 SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 
+# test of push ability
 # build coreir here
 git clone --depth 1 --branch rm-ubuf https://github.com/rdaly525/coreir coreir
 # there is a bug in ABI with regex
