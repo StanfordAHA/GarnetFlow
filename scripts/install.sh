@@ -9,9 +9,9 @@ REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 git clone --depth 1 --branch ubuffer https://github.com/rdaly525/coreir coreir
 # there is a bug in ABI with regex
 # see https://github.com/rdaly525/coreir/issues/737
-cd coreir && \
-    git apply /GarnetFlow/patches/coreir_path_cxxopt && \
-    cd ..
+#cd coreir && \
+    #git apply /GarnetFlow/patches/coreir_path_cxxopt && \
+    #cd ..
 cd coreir/build && cmake .. && make -j2 && cd ../../
 
 # pin pycoreir version since the latest one doesn't work
