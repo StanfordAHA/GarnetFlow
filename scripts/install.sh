@@ -44,7 +44,8 @@ cd Halide-to-Hardware
 # curl -X GET -u $GITHUB_TOKEN:x-oauth-basic ${RELEASE_ADDR} | grep browser_download_url | cut -d '"' -f 5 | wget -qi -
 #wget -q https://github.com/StanfordAHA/Halide-to-Hardware/releases/download/v0.0.8/halide_distrib.tgz
 #wget -q https://github.com/StanfordAHA/Halide-to-Hardware/releases/download/test-buffer-4/halide_distrib.tgz
-wget -q https://github.com/StanfordAHA/Halide-to-Hardware/releases/download/ubuffer-abi-fix/halide_distrib.tgz
+#wget -q https://github.com/StanfordAHA/Halide-to-Hardware/releases/download/ubuffer-abi-fix/halide_distrib.tgz
+wget -q https://github.com/StanfordAHA/Halide-to-Hardware/releases/download/ubuffer-using-llvm-7/halide_distrib.tgz
 tar zxf halide_distrib.tgz
 ls distrib
 cd ../
