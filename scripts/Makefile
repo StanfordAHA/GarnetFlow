@@ -35,7 +35,7 @@ $1: $(addprefix /tmp/, $1.bs.out)
 	@echo ${OUTPUT_REDIRECTION}
 	@echo $(USR_CXX11_ABI)
 	make -C $(HALIDE_DIR)/$2/$1 bin/design_top.json 1> /dev/null
-	cd ./BufferMapping/script; python coreir_gen.py $(HALIDE_DIR)/$2/$1/bin/design_top.json; pwd; ls; cp ./output/output_coreir.json $(HALIDE_DIR)/$2/$1/bin/design_top.json; cd ../..
+	cd ./BufferMapping/script; python coreir_gen.py $(HALIDE_DIR)/$2/$1/bin/design_top.json; pwd; ls; ls ./output/; cp /GarnetFlow/scripts/BufferMapping/script/output/output_coreir.json $(HALIDE_DIR)/$2/$1/bin/design_top.json; cd ../..
 	make -C $(HALIDE_DIR)/$2/$1 bin/input.raw && cp $(HALIDE_DIR)/$2/$1/bin/input.raw /tmp/$1_input.raw
 	make -C $(HALIDE_DIR)/$2/$1 bin/output_cpu.raw && cp $(HALIDE_DIR)/$2/$1/bin/output_cpu.raw /tmp/$1_gold.raw
 	cp $(HALIDE_DIR)/$2/$1/bin/design_top.json /tmp/$1.json
