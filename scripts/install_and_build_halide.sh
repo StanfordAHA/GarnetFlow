@@ -2,7 +2,7 @@
 
 # create Halide
 #git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
-git clone --branch hls_codegen_with_loops_hwbuffer_jeff_merge --depth 1 https://github.com/dillonhuff/Halide-to-Hardware
+git clone --branch hls_hwbuffer_codegen_garnetflow_updates --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
 
 # download the prebuilt Halide library
 cd Halide-to-Hardware
