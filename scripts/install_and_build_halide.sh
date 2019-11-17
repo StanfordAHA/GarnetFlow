@@ -1,14 +1,16 @@
 #!/bin/bash -e
 
-# create Halide
-#git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
-git clone --branch hls_hwbuffer_codegen_garnetflow_updates --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
-
-# download the prebuilt Halide library
-cd Halide-to-Hardware
+# Create environment variables
 export CLANG=/usr/lib/llvm-7/bin/clang
 export LLVM_CONFIG=/usr/lib/llvm-7/bin/llvm-config
 export CLANG_OK=y
+
+# Get Halide
+git clone --branch hls_hwbuffer_codegen_garnetflow_updates --depth 1 https://github.com/$1
+# StanfordAHA/Halide-to-Hardware
+cd Halide-to-Hardware
+#git checkout -qf hls_hwbuffer_codegen_garnetflow_updates
+git checkout -qf $2
 
 make -j
 make distrib
