@@ -29,6 +29,7 @@ $1: $(addprefix /tmp/, $1.bs.out)
 	cd garnet && python tbg.py garnet.v garnet_stub.v $(addprefix /tmp/, $1.bs.json)
 
 /tmp/$1.bs: $(addprefix /tmp/, $1.json)
+	echo "Creating bitstream..."
 	cd garnet && python garnet.py --width $(WIDTH) --height $(HEIGHT) --no-pd --input-app /tmp/$1.json \
 		--interconnect-only --input-file /tmp/$1_input.raw --output-file /tmp/$1.bs --gold-file /tmp/$1_gold.raw && cd ..
 
@@ -37,7 +38,6 @@ $1: $(addprefix /tmp/, $1.bs.out)
 	@echo ${OUTPUT_REDIRECTION}
 	@echo $(USR_CXX11_ABI)
 	make -C $(HALIDE_DIR)/$2/$1 bin/design_top.json 1> /dev/null
-	cd ./BufferMapping/script; python coreir_gen.py $(HALIDE_DIR)/$2/$1/bin/design_top.json; pwd; ls; ls ./output/; cp /GarnetFlow/scripts/BufferMapping/script/output/output_coreir.json $(HALIDE_DIR)/$2/$1/bin/design_top.json; cd ../..
 	make -C $(HALIDE_DIR)/$2/$1 bin/input.raw && cp $(HALIDE_DIR)/$2/$1/bin/input.raw /tmp/$1_input.raw
 	make -C $(HALIDE_DIR)/$2/$1 bin/output_cpu.raw && cp $(HALIDE_DIR)/$2/$1/bin/output_cpu.raw /tmp/$1_gold.raw
 	cp $(HALIDE_DIR)/$2/$1/bin/design_top.json /tmp/$1.json
