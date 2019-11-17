@@ -26,18 +26,6 @@ else
 	echo "Coreir already built"
 fi
 
-# pin pycoreir version since the latest one doesn't work
-pip3 install --ignore-installed coreir==2.0.19
-
-# install this last since we already have a coreir built
-python3 python_repo.py
-
-# install genesis2
-pip3 install genesis2
-
-# clone garnet
-git clone --depth 1 https://github.com/StanfordAHA/garnet
-
 # create the lake repo
 export COREIR_DIR=/GarnetFlow/scripts/coreir # lake needs to know where coreir is
 git clone --branch master --depth 1 https://github.com/joyliu37/BufferMapping
