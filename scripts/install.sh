@@ -4,8 +4,8 @@ SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 
 if [ ! -d "/usr/lib/llvm-7" ]; then
-	apt-get install llvm-7
-	apt-get install clang-7
+	apt-get --assume-yes install llvm-7
+	apt-get --assume-yes install clang-7
 else
 	echo "llvm already installed"
 fi
