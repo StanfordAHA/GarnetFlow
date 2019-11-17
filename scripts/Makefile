@@ -2,6 +2,8 @@ HALIDE_DIR := /GarnetFlow/scripts/Halide-to-Hardware/apps/hardware_benchmarks
 WIDTH ?= 12
 HEIGHT ?= 12
 
+WIDTH = 2
+HEIGHT = 2
 APPS = pointwise gaussian cascade harris
 TESTS = conv_1_2 conv_2_1 conv_3_3 ucomp scomp arith ushift uminmax rom absolute
 BITSTREAM = $(APPS) $(TESTS)
