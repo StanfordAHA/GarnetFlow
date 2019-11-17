@@ -12,7 +12,7 @@ cd Halide-to-Hardware
 #git checkout -qf hls_hwbuffer_codegen_garnetflow_updates
 git checkout -qf $2
 
-make -j
+make -j4
 make distrib
 
 # I give up. someone else can try it.
