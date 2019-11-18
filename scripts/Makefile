@@ -40,7 +40,8 @@ $1: $(addprefix /tmp/, $1.bs.out)
 	make -C $(HALIDE_DIR)/$2/$1 bin/output_cpu.raw && cp $(HALIDE_DIR)/$2/$1/bin/output_cpu.raw /tmp/$1_gold.raw
 	cp $(HALIDE_DIR)/$2/$1/bin/design_top.json /tmp/$1_lakelib.json
 	cd BufferMapping/script; python coreir_gen.py /tmp/$1_lakelib.json; cp ./output/$1_lakelib_rewrite.json /tmp/$1_lakelib_lowered.json
-	./replace_lakelib_with_commonlib.sh /tmp/$1_lakelib_lowered.json > /tmp/$1.json
+	./replace_lakelib_with_commonlib.sh /tmp/$1_lakelib_lowered.json > /tmp/$1_commonlib.json
+	./replace_numbered_datain_dataout.sh /tmp/$1_commonlib.json > /tmp/$1.json
 endef
 
 $(foreach app, $(APPS), $(eval $(call make-test,$(app),apps)))
