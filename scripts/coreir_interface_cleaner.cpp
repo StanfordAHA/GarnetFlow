@@ -1,4 +1,6 @@
 #include "coreir.h"
+#include "coreir/libs/commonlib.h"
+#include "lakelib.h"
 
 #include <set>
 
@@ -76,8 +78,12 @@ void copyModuleTo(Module* top, Namespace* tmp) {
 
 int main(const int argc, const char** argv) {
 
+  std::string fileName = "/tmp/conv_2_1_lakelib.json";
   Context* c = newContext();
-  if (!loadFromFile(c, "/tmp/absolute.json")) {
+  CoreIRLoadLibrary_commonlib(c);
+  CoreIRLoadLibrary_lakelib(c);
+
+  if (!loadFromFile(c, fileName)) {
     cout << "Could not Load from json!!" << endl;
     c->die();
   }
@@ -86,56 +92,65 @@ int main(const int argc, const char** argv) {
   Module* top = n->getModule("DesignTop");
   auto def = top->getDef();
   assert(def != nullptr);
-
-  std::set<string> unusedPorts;
-  RecordParams rc;
-  for (auto field : top->getType()->getFields()) {
-    cout << "Name: " << field << endl;
-    auto port = def->sel("self")->sel(field);
-    if (!hasConnection(port)) {
-      cout << "\t" << field << " has no connections" << endl;
-      unusedPorts.insert(field);
-    } else {
-      rc.push_back({field, c->Flip(port->getType())});
-    }
-  }
-
-  Namespace* tmp = c->newNamespace("tmp");
-  map<Wireable*, Wireable*> ws;
-  map<Instance*, Instance*> instances;
-
-  Module* cpyMod = tmp->newModuleDecl("DesignTop", c->Record(rc));
-  auto cpyDef = cpyMod->newModuleDef();
-  ws[def->sel("self")] = cpyDef->sel("self");
-  for (auto field : cpyMod->getType()->getFields()) {
-    ws[def->sel("self")->sel(field)] = cpyDef->sel("self")->sel(field);
-  }
   for (auto inst : def->getInstances()) {
-    auto instPtr = inst.second;
-    auto cpyInst = cpyDef->addInstance(inst.first, instPtr->getModuleRef(), instPtr->getModArgs());
-    instances[instPtr] = cpyInst;
+    inlineInstance(inst.second);
   }
 
-  cout << "Copying connections.." << endl;
+  c->runPasses({"deletedeadinstances"});
+
+  cout << "After inlining..." << endl;
+  top->print();
+
+  //std::set<string> unusedPorts;
+  //RecordParams rc;
+  //for (auto field : top->getType()->getFields()) {
+    //cout << "Name: " << field << endl;
+    //auto port = def->sel("self")->sel(field);
+    //if (!hasConnection(port)) {
+      //cout << "\t" << field << " has no connections" << endl;
+      //unusedPorts.insert(field);
+    //} else {
+      //rc.push_back({field, c->Flip(port->getType())});
+    //}
+  //}
+
+  //Namespace* tmp = c->newNamespace("tmp");
+  //map<Wireable*, Wireable*> ws;
+  //map<Instance*, Instance*> instances;
+
+  //Module* cpyMod = tmp->newModuleDecl("DesignTop", c->Record(rc));
+  //auto cpyDef = cpyMod->newModuleDef();
+  //ws[def->sel("self")] = cpyDef->sel("self");
+  //for (auto field : cpyMod->getType()->getFields()) {
+    //ws[def->sel("self")->sel(field)] = cpyDef->sel("self")->sel(field);
+  //}
+  //for (auto inst : def->getInstances()) {
+    //auto instPtr = inst.second;
+    //auto cpyInst = cpyDef->addInstance(inst.first, instPtr->getModuleRef(), instPtr->getModArgs());
+    //instances[instPtr] = cpyInst;
+  //}
+
+  //cout << "Copying connections.." << endl;
   
-  for (auto& oldConn : def->getSortedConnections()) {
-    Wireable* fst = oldConn.first;
-    Wireable* snd = oldConn.second;
+  //for (auto& oldConn : def->getSortedConnections()) {
+    //Wireable* fst = oldConn.first;
+    //Wireable* snd = oldConn.second;
 
-    cpyDef->connect(replaceBase(fst, ws, instances, cpyDef), replaceBase(snd, ws, instances, cpyDef));
-  }
-  cout << "Done copying connections.." << endl;
+    //cpyDef->connect(replaceBase(fst, ws, instances, cpyDef), replaceBase(snd, ws, instances, cpyDef));
+  //}
+  //cout << "Done copying connections.." << endl;
 
-  cpyMod->setDef(cpyDef);
-  cout << "cpyMod..." << endl;
-  cpyMod->print();
+  //cpyMod->setDef(cpyDef);
+  //cout << "cpyMod..." << endl;
+  //cpyMod->print();
 
-  // Create copy w/o reset
-  n->eraseModule("DesignTop");
-  copyModuleTo(cpyMod, c->getNamespace("global"));
+  //// Create copy w/o reset
+  //n->eraseModule("DesignTop");
+  //copyModuleTo(cpyMod, c->getNamespace("global"));
 
   // Copy module to top
-  saveToFile(c->getGlobal(), "/tmp/absolute.json", c->getGlobal()->getModule("DesignTop"));
+  //saveToFile(c->getGlobal(), "/tmp/absolute.json", c->getGlobal()->getModule("DesignTop"));
+  //saveToFile(c->getGlobal(), fileName, c->getGlobal()->getModule("DesignTop"));
   
   deleteContext(c);
 }

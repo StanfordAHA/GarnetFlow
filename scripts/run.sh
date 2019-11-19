@@ -20,10 +20,10 @@ fi
 make garnet_verilog
 
 # build apps
+make conv_2_1
 make pointwise
 make absolute
 make conv_1_2
-make conv_2_1
 make scomp
 make ucomp
 make arith
