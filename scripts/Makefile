@@ -24,7 +24,7 @@ define make-test
 $1: $(addprefix /tmp/, $1.bs.out)
 
 /tmp/$1.bs.out: garnet_verilog /tmp/$1.bs
-	#cd garnet && python tbg.py garnet.v garnet_stub.v $(addprefix /tmp/, $1.bs.json)
+	cd garnet && python tbg.py garnet.v garnet_stub.v $(addprefix /tmp/, $1.bs.json)
 
 /tmp/$1.bs: $(addprefix /tmp/, $1.json)
 	echo "Creating bitstream..."
