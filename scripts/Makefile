@@ -24,7 +24,7 @@ define make-test
 $1: $(addprefix /tmp/, $1.bs.out)
 
 /tmp/$1.bs.out: garnet_verilog /tmp/$1.bs
-	cd garnet && python tbg.py garnet.v garnet_stub.v $(addprefix /tmp/, $1.bs.json)
+	#cd garnet && python tbg.py garnet.v garnet_stub.v $(addprefix /tmp/, $1.bs.json)
 
 /tmp/$1.bs: $(addprefix /tmp/, $1.json)
 	echo "Creating bitstream..."
@@ -39,7 +39,7 @@ $1: $(addprefix /tmp/, $1.bs.out)
 	make -C $(HALIDE_DIR)/$2/$1 bin/input.raw && cp $(HALIDE_DIR)/$2/$1/bin/input.raw /tmp/$1_input.raw
 	make -C $(HALIDE_DIR)/$2/$1 bin/output_cpu.raw && cp $(HALIDE_DIR)/$2/$1/bin/output_cpu.raw /tmp/$1_gold.raw
 	cp $(HALIDE_DIR)/$2/$1/bin/design_top.json /tmp/$1_lakelib.json
-	./build_coreir_cleaner.sh
+	./build_coreir_cleaner.sh /tmp/$1_lakelib.json
 	cd BufferMapping/script; python coreir_gen.py /tmp/$1_lakelib.json; cp ./output/$1_lakelib_rewrite.json /tmp/$1_lakelib_lowered.json
 	./replace_lakelib_with_commonlib.sh /tmp/$1_lakelib_lowered.json > /tmp/$1_commonlib.json
 	./replace_numbered_datain_dataout.sh /tmp/$1_commonlib.json > /tmp/$1.json

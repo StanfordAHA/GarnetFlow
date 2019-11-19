@@ -10,4 +10,4 @@ echo "Cmd = $cmd"
 eval $cmd
 echo "done compiling..."
 export LD_LIBRARY_PATH=/GarnetFlow/scripts/coreir/lib:/GarnetFlow/scripts/BufferMapping/cfunc/bin
-./coreir_cleaner
+./coreir_cleaner $1

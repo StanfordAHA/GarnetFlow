@@ -20,15 +20,15 @@ fi
 make garnet_verilog
 
 # build apps
-make conv_2_1
-make pointwise
 make absolute
-make conv_1_2
+make pointwise
 make scomp
 make ucomp
 make arith
 make ushift
 make uminmax
+make conv_1_2
+make conv_2_1
 make rom
 
 if [ -n "$BUILDKITE" ] && [ -z "$PR" ];

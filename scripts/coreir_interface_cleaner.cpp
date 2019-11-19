@@ -76,10 +76,23 @@ void copyModuleTo(Module* top, Namespace* tmp) {
   cpyMod->print();
 }
 
+bool fromGenerator(Instance* inst, const std::string& name) {
+  if (!inst->getModuleRef()->isGenerated()) {
+    return false;
+  }
+
+  auto gen = inst->getModuleRef()->getGenerator();
+  return gen->getRefName() == name;
+}
+
 int main(const int argc, const char** argv) {
 
+  assert(argc == 2);
+
+  string fileName = argv[1];
+  cout << "Doing coreir hacks for: " << fileName << endl;
   //std::string fileName = "/tmp/conv_2_1_lakelib.json";
-  std::string fileName = "/tmp/absolute_lakelib.json";
+  //std::string fileName = "/tmp/absolute_lakelib.json";
   //conv_2_1_lakelib.json";
   Context* c = newContext();
   CoreIRLoadLibrary_commonlib(c);
@@ -99,7 +112,11 @@ int main(const int argc, const char** argv) {
     changed = false;
     for (auto inst : def->getInstances()) {
       //cout << "Inlining: " << CoreIR::toString(*(inst.second)) << endl;
-      changed = inlineInstance(inst.second);
+      if (!fromGenerator(inst.second, "ROM") &&
+          !fromGenerator(inst.second, "linebuffer") &&
+          !fromGenerator(inst.second, "unified_buffer")) {
+        changed = inlineInstance(inst.second);
+      }
       //cout << "Changed = " << changed << endl;
       top->print();
       if (changed) {
@@ -162,8 +179,6 @@ int main(const int argc, const char** argv) {
 
    //Copy module to top
   saveToFile(c->getGlobal(), fileName, c->getGlobal()->getModule("DesignTop"));
- 
-  //saveToFile(c->getGlobal(), fileName, c->getGlobal()->getModule("DesignTop"));
   
   deleteContext(c);
 }
