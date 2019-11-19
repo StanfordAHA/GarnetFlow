@@ -92,8 +92,18 @@ int main(const int argc, const char** argv) {
   Module* top = n->getModule("DesignTop");
   auto def = top->getDef();
   assert(def != nullptr);
-  for (auto inst : def->getInstances()) {
-    inlineInstance(inst.second);
+  bool changed = true;
+  while (changed) {
+    changed = false;
+    for (auto inst : def->getInstances()) {
+      //cout << "Inlining: " << CoreIR::toString(*(inst.second)) << endl;
+      changed = inlineInstance(inst.second);
+      //cout << "Changed = " << changed << endl;
+      top->print();
+      if (changed) {
+        break;
+      }
+    }
   }
 
   c->runPasses({"deletedeadinstances"});
@@ -150,7 +160,8 @@ int main(const int argc, const char** argv) {
 
   // Copy module to top
   //saveToFile(c->getGlobal(), "/tmp/absolute.json", c->getGlobal()->getModule("DesignTop"));
-  //saveToFile(c->getGlobal(), fileName, c->getGlobal()->getModule("DesignTop"));
+ 
+  saveToFile(c->getGlobal(), fileName, c->getGlobal()->getModule("DesignTop"));
   
   deleteContext(c);
 }
