@@ -24,11 +24,11 @@ make absolute
 make pointwise
 make scomp
 make ucomp
-make arith
 make ushift
 make uminmax
 make conv_1_2
 make conv_2_1
+make arith
 make rom
 
 if [ -n "$BUILDKITE" ] && [ -z "$PR" ];

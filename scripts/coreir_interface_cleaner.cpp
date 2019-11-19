@@ -112,7 +112,7 @@ int main(const int argc, const char** argv) {
     changed = false;
     for (auto inst : def->getInstances()) {
       //cout << "Inlining: " << CoreIR::toString(*(inst.second)) << endl;
-      if (!fromGenerator(inst.second, "ROM") &&
+      if (!fromGenerator(inst.second, "rom2") &&
           !fromGenerator(inst.second, "linebuffer") &&
           !fromGenerator(inst.second, "unified_buffer")) {
         changed = inlineInstance(inst.second);
