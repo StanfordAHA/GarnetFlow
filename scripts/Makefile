@@ -42,6 +42,7 @@ $1: $(addprefix /tmp/, $1.bs.out)
 	cd BufferMapping/script; python coreir_gen.py /tmp/$1_lakelib.json; cp ./output/$1_lakelib_rewrite.json /tmp/$1_lakelib_lowered.json
 	./replace_lakelib_with_commonlib.sh /tmp/$1_lakelib_lowered.json > /tmp/$1_commonlib.json
 	./replace_numbered_datain_dataout.sh /tmp/$1_commonlib.json > /tmp/$1.json
+	./build_coreir_cleaner.sh
 endef
 
 $(foreach app, $(APPS), $(eval $(call make-test,$(app),apps)))

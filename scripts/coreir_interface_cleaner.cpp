@@ -14,6 +14,66 @@ bool hasConnection(Wireable* w) {
   return false;
 }
 
+Wireable* replaceBase(Wireable* toReplace, map<Wireable*, Wireable*>& ws, map<Instance*, Instance*>& instances, ModuleDef* cpyDef) {
+  cout << "Replacing: " << CoreIR::toString(*toReplace) << endl;
+
+  if (toReplace->getKind() == Wireable::WK_Interface) {
+    cout << "Is interface" << endl;
+    return map_find(toReplace, ws);
+  }
+
+  if (toReplace->getKind() == Wireable::WK_Instance) {
+    cout << "Is instance" << endl;
+    return map_find(static_cast<Instance*>(toReplace), instances);
+  }
+
+  assert(toReplace->getKind() == Wireable::WK_Select);
+  auto sel = static_cast<Select*>(toReplace);
+  cout << "Is select:" << endl;
+  return replaceBase(sel->getParent(), ws, instances, cpyDef)->sel(sel->getSelStr());
+}
+
+void copyModuleTo(Module* top, Namespace* tmp) {
+  map<Wireable*, Wireable*> ws;
+  map<Instance*, Instance*> instances;
+
+  auto def = top->getDef();
+  assert(def != nullptr);
+
+  auto c = def->getContext();
+
+  RecordParams rc;
+  for (auto field : top->getType()->getFields()) {
+    auto port = def->sel("self")->sel(field);
+    rc.push_back({field, c->Flip(port->getType())});
+  }
+  Module* cpyMod = tmp->newModuleDecl("DesignTop", c->Record(rc));
+  auto cpyDef = cpyMod->newModuleDef();
+  ws[def->sel("self")] = cpyDef->sel("self");
+  for (auto field : cpyMod->getType()->getFields()) {
+    ws[def->sel("self")->sel(field)] = cpyDef->sel("self")->sel(field);
+  }
+  for (auto inst : def->getInstances()) {
+    auto instPtr = inst.second;
+    auto cpyInst = cpyDef->addInstance(inst.first, instPtr->getModuleRef(), instPtr->getModArgs());
+    instances[instPtr] = cpyInst;
+  }
+
+  cout << "Copying connections.." << endl;
+  
+  for (auto& oldConn : def->getSortedConnections()) {
+    Wireable* fst = oldConn.first;
+    Wireable* snd = oldConn.second;
+
+    cpyDef->connect(replaceBase(fst, ws, instances, cpyDef), replaceBase(snd, ws, instances, cpyDef));
+  }
+  cout << "Done copying connections.." << endl;
+
+  cpyMod->setDef(cpyDef);
+  cout << "cpyMod..." << endl;
+  cpyMod->print();
+}
+
 int main(const int argc, const char** argv) {
 
   Context* c = newContext();
@@ -46,6 +106,7 @@ int main(const int argc, const char** argv) {
 
   Module* cpyMod = tmp->newModuleDecl("DesignTop", c->Record(rc));
   auto cpyDef = cpyMod->newModuleDef();
+  ws[def->sel("self")] = cpyDef->sel("self");
   for (auto field : cpyMod->getType()->getFields()) {
     ws[def->sel("self")->sel(field)] = cpyDef->sel("self")->sel(field);
   }
@@ -54,16 +115,27 @@ int main(const int argc, const char** argv) {
     auto cpyInst = cpyDef->addInstance(inst.first, instPtr->getModuleRef(), instPtr->getModArgs());
     instances[instPtr] = cpyInst;
   }
+
+  cout << "Copying connections.." << endl;
+  
+  for (auto& oldConn : def->getSortedConnections()) {
+    Wireable* fst = oldConn.first;
+    Wireable* snd = oldConn.second;
+
+    cpyDef->connect(replaceBase(fst, ws, instances, cpyDef), replaceBase(snd, ws, instances, cpyDef));
+  }
+  cout << "Done copying connections.." << endl;
+
   cpyMod->setDef(cpyDef);
   cout << "cpyMod..." << endl;
   cpyMod->print();
 
   // Create copy w/o reset
   n->eraseModule("DesignTop");
+  copyModuleTo(cpyMod, c->getNamespace("global"));
 
   // Copy module to top
-  saveToFile(c, "/tmp/absolute.json");
+  saveToFile(c->getGlobal(), "/tmp/absolute.json", c->getGlobal()->getModule("DesignTop"));
   
-
   deleteContext(c);
 }
