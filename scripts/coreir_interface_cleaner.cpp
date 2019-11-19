@@ -1,5 +1,7 @@
 #include "coreir.h"
 
+#include <set>
+
 using namespace std;
 using namespace CoreIR;
 
@@ -25,21 +27,41 @@ int main(const int argc, const char** argv) {
   auto def = top->getDef();
   assert(def != nullptr);
 
+  std::set<string> unusedPorts;
+  RecordParams rc;
   for (auto field : top->getType()->getFields()) {
     cout << "Name: " << field << endl;
     auto port = def->sel("self")->sel(field);
     if (!hasConnection(port)) {
       cout << "\t" << field << " has no connections" << endl;
+      unusedPorts.insert(field);
+    } else {
+      rc.push_back({field, c->Flip(port->getType())});
     }
   }
+
   Namespace* tmp = c->newNamespace("tmp");
-  //Module* m = tmpCpy;
+  map<Wireable*, Wireable*> ws;
+  map<Instance*, Instance*> instances;
+
+  Module* cpyMod = tmp->newModuleDecl("DesignTop", c->Record(rc));
+  auto cpyDef = cpyMod->newModuleDef();
+  for (auto field : cpyMod->getType()->getFields()) {
+    ws[def->sel("self")->sel(field)] = cpyDef->sel("self")->sel(field);
+  }
+  for (auto inst : def->getInstances()) {
+    auto instPtr = inst.second;
+    auto cpyInst = cpyDef->addInstance(inst.first, instPtr->getModuleRef(), instPtr->getModArgs());
+    instances[instPtr] = cpyInst;
+  }
+  cpyMod->setDef(cpyDef);
+  cout << "cpyMod..." << endl;
+  cpyMod->print();
+
   // Create copy w/o reset
   n->eraseModule("DesignTop");
 
-  assert(false);
   // Copy module to top
-  //
   saveToFile(c, "/tmp/absolute.json");
   
 
