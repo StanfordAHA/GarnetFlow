@@ -20,21 +20,21 @@ fi
 make garnet_verilog
 
 # build apps
+make conv_1_2
+make conv_2_1
 make absolute
 make pointwise
 make scomp
 make ucomp
 make ushift
 make uminmax
-make conv_1_2
-make conv_2_1
-make arith
-make rom
+#make arith
+#make rom
 
 if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
 then
     make conv_3_3
-    make gaussian
+    #make gaussian
     make cascade
-    make harris
+    #make harris
 fi
