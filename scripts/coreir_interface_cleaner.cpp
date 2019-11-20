@@ -138,7 +138,6 @@ int main(const int argc, const char** argv) {
   }
 
   cout << "Found: " << roms.size() << " roms" << endl;
-  assert(roms.size() > 0);
 
   for (auto rom : roms) {
     Module* romMod = rom->getModuleRef();
@@ -150,7 +149,6 @@ int main(const int argc, const char** argv) {
       if (arg.first != "init") {
         cout << "copying: " << arg.first << endl;
         newArgs[arg.first] = arg.second;
-        assert(false);
       } else {
         cout << "Replacing rom..." << endl;
         cout << "Init: " << arg.second->get<Json>() << endl;
