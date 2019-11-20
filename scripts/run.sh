@@ -20,6 +20,7 @@ fi
 make garnet_verilog
 
 # build apps
+make rom
 make conv_1_2
 make conv_2_1
 make absolute
@@ -37,5 +38,4 @@ then
     make harris
 fi
 
-make rom
 make arith
