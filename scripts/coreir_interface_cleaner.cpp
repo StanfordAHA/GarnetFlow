@@ -1,3 +1,8 @@
+// This file is a container for a bunch of coreir hacks
+// that are needed to get the compiler flow working. Feel
+// free to use it as a hook in to the build system for other hacks that
+// need to be applied to the pre-mapped coreir for an application.
+
 #include "coreir.h"
 #include "coreir/libs/commonlib.h"
 #include "lakelib.h"
@@ -17,21 +22,17 @@ bool hasConnection(Wireable* w) {
 }
 
 Wireable* replaceBase(Wireable* toReplace, map<Wireable*, Wireable*>& ws, map<Instance*, Instance*>& instances, ModuleDef* cpyDef) {
-  cout << "Replacing: " << CoreIR::toString(*toReplace) << endl;
 
   if (toReplace->getKind() == Wireable::WK_Interface) {
-    cout << "Is interface" << endl;
     return map_find(toReplace, ws);
   }
 
   if (toReplace->getKind() == Wireable::WK_Instance) {
-    cout << "Is instance" << endl;
     return map_find(static_cast<Instance*>(toReplace), instances);
   }
 
   assert(toReplace->getKind() == Wireable::WK_Select);
   auto sel = static_cast<Select*>(toReplace);
-  cout << "Is select:" << endl;
   return replaceBase(sel->getParent(), ws, instances, cpyDef)->sel(sel->getSelStr());
 }
 
@@ -91,9 +92,6 @@ int main(const int argc, const char** argv) {
 
   string fileName = argv[1];
   cout << "Doing coreir hacks for: " << fileName << endl;
-  //std::string fileName = "/tmp/conv_2_1_lakelib.json";
-  //std::string fileName = "/tmp/absolute_lakelib.json";
-  //conv_2_1_lakelib.json";
   Context* c = newContext();
   CoreIRLoadLibrary_commonlib(c);
   CoreIRLoadLibrary_lakelib(c);
@@ -118,7 +116,7 @@ int main(const int argc, const char** argv) {
         changed = inlineInstance(inst.second);
       }
       //cout << "Changed = " << changed << endl;
-      top->print();
+      //top->print();
       if (changed) {
         break;
       }
@@ -130,6 +128,45 @@ int main(const int argc, const char** argv) {
   cout << "After inlining..." << endl;
   top->print();
 
+  cout << "Converting rom parameterization" << endl;
+  set<Instance*> roms;
+  for (auto inst : top->getDef()->getInstances()) {
+    if (fromGenerator(inst.second, "memory.rom2") ||
+        fromGenerator(inst.second, "rom2")) {
+      roms.insert(inst.second);
+    }
+  }
+
+  cout << "Found: " << roms.size() << " roms" << endl;
+  assert(roms.size() > 0);
+
+  for (auto rom : roms) {
+    Module* romMod = rom->getModuleRef();
+    const Values& modArgs = rom->getModArgs();
+
+    Values newArgs;
+    for (auto arg : modArgs) {
+      cout << "\tArg: " << arg.first << endl;
+      if (arg.first != "init") {
+        cout << "copying: " << arg.first << endl;
+        newArgs[arg.first] = arg.second;
+        assert(false);
+      } else {
+        cout << "Replacing rom..." << endl;
+        cout << "Init: " << arg.second->get<Json>() << endl;
+        Json replacedInit;
+        for (auto v : arg.second->get<Json>()["init"]) {
+          cout << "Adding: " << v << " to replaced" << endl;
+          replacedInit["init"].emplace_back(stoi(v.get<std::string>()));
+        }
+        newArgs[arg.first] = CoreIR::Const::make(top->getDef()->getContext(), replacedInit);
+        //newArgs[arg.first] = arg.second;
+      }
+    }
+    rom->replace(romMod, newArgs);
+  }
+
+  cout << "Removing unused ports" << endl;
   std::set<string> unusedPorts;
   RecordParams rc;
   for (auto field : top->getType()->getFields()) {
