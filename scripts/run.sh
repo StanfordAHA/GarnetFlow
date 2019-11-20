@@ -28,7 +28,6 @@ make scomp
 make ucomp
 make ushift
 make uminmax
-make arith
 
 if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
 then
@@ -39,3 +38,4 @@ then
 fi
 
 make rom
+make arith
