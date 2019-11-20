@@ -29,13 +29,13 @@ make ucomp
 make ushift
 make uminmax
 make arith
-#make rom
 
 if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
 then
     make conv_3_3
     make gaussian
-    #make cascade
+    make cascade
     make harris
 fi
 
+make rom
