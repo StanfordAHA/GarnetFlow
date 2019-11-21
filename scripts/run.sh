@@ -19,10 +19,6 @@ fi
 # build CGRA
 make garnet_verilog
 
-# build apps
-make ushift
-make arith
-
 if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
 then
     make conv_3_3
@@ -31,6 +27,7 @@ then
     make harris
 fi
 
+# build apps
 make conv_1_2
 make conv_2_1
 make absolute
@@ -39,5 +36,7 @@ make scomp
 make ucomp
 make uminmax
 make rom
+make ushift
+make arith
 
 
