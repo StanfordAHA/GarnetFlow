@@ -1,6 +1,6 @@
 HALIDE_DIR := /GarnetFlow/scripts/Halide-to-Hardware/apps/hardware_benchmarks
-WIDTH ?= 20
-HEIGHT ?= 20
+WIDTH ?= 18
+HEIGHT ?= 18
 
 APPS = pointwise gaussian cascade harris
 TESTS = conv_1_2 conv_2_1 conv_3_3 ucomp scomp arith ushift uminmax rom absolute
@@ -24,7 +24,7 @@ define make-test
 $1: $(addprefix /tmp/, $1.bs.out)
 
 /tmp/$1.bs.out: garnet_verilog /tmp/$1.bs
-	cd garnet && python tbg.py garnet.v garnet_stub.v $(addprefix /tmp/, $1.bs.json)
+	#cd garnet && python tbg.py garnet.v garnet_stub.v $(addprefix /tmp/, $1.bs.json)
 
 /tmp/$1.bs: $(addprefix /tmp/, $1.json)
 	echo "Creating bitstream..."

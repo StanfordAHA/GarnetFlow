@@ -20,15 +20,8 @@ fi
 make garnet_verilog
 
 # build apps
-make rom
-make conv_1_2
-make conv_2_1
-make absolute
-make pointwise
-make scomp
-make ucomp
 make ushift
-make uminmax
+make arith
 
 if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
 then
@@ -38,4 +31,13 @@ then
     make harris
 fi
 
-make arith
+make conv_1_2
+make conv_2_1
+make absolute
+make pointwise
+make scomp
+make ucomp
+make uminmax
+make rom
+
+
