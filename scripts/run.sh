@@ -20,6 +20,14 @@ fi
 make garnet_verilog
 
 # build apps
+if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
+then
+    make cascade
+    make harris
+    make gaussian
+    make conv_3_3
+fi
+
 make ushift
 make arith
 make conv_1_2
@@ -31,11 +39,4 @@ make ucomp
 make uminmax
 make rom
 
-if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
-then
-    make harris
-    make gaussian
-    make conv_3_3
-    #make cascade
-fi
 
