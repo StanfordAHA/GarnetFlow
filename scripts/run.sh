@@ -35,7 +35,7 @@ if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
 then
     make harris
     make gaussian
-    make cascade
     make conv_3_3
+    make cascade
 fi
 
