@@ -21,10 +21,10 @@ make garnet_verilog
 
 if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
 then
-    make conv_3_3
     make gaussian
     make cascade
     make harris
+    make conv_3_3
 fi
 
 # build apps
