@@ -3,13 +3,6 @@
 SOURCE="${BASH_SOURCE[0]}"
 REQUIREMENTS=`(dirname ${SOURCE})`/requirements.txt
 
-if [ ! -d "/usr/lib/llvm-7" ]; then
-	apt-get --assume-yes install llvm-7
-	apt-get --assume-yes install clang-7
-else
-	echo "llvm already installed"
-fi
-
 # If coreir has not already been built
 if [ ! -d "coreir" ]; then
 	# test of push ability
