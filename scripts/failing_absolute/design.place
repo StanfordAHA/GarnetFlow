@@ -1,6 +1,0 @@
-Block Name			X	Y		#Block ID
-----------------------------
-io16_out_0_0		5	0		#I14
-io16in_in_arg_0_0_0		0	0		#I15
-io1_valid		5	0		#i16
-io1in_in_en		0	0		#i17
