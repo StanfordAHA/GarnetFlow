@@ -1,0 +1,13 @@
+
+# pin pycoreir version since the latest one doesn't work
+pip3 install --ignore-installed coreir==2.0.19
+
+# install this last since we already have a coreir built
+python3 python_repo.py
+
+# install genesis2
+pip3 install genesis2
+
+# clone garnet
+git clone --depth 1 https://github.com/StanfordAHA/garnet
+
