@@ -15,8 +15,14 @@ export CLANG_OK=y
 # Get Halide
 cd Halide-to-Hardware
 
-make -j4
-make distrib
+if [[ -z $HALIDE_TO_HARDWARE ]]; then
+  make -j4
+  make distrib
+else
+  git checkout $HALIDE_TO_HARDWARE
+  make -j4
+  make distrib
+fi
 
 cd ../
 
