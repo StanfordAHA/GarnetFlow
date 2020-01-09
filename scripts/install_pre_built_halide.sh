@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-if [[ -z $HALIDE_TO_HARDWARE ]]; then
+if [[ -z $Halide_to_Hardware ]]; then
   git clone --depth 1 https://github.com/StanfordAHA/Halide-to-Hardware
   cd Halide-to-Hardware
 
