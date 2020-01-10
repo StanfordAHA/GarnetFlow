@@ -9,7 +9,7 @@ before_install:
     - docker exec -i garnet bash -c "cd GarnetFlow/scripts && ./install.sh" 
 
 script:
-    - docker exec -i garnet bash -c "cd GarnetFlow/scripts && ./run.sh" 
+    - travis_wait 60 docker exec -i garnet bash -c "cd GarnetFlow/scripts && ./run.sh" 
 
 notifications:
   email:
