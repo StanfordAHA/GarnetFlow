@@ -9,13 +9,11 @@
         "name": "magma-lang",
         "type": "git",
         "url": "https://github.com/phanrahan/magma.git",
-        "branch": "v1.0.28"
+        "branch": "master"
     },
     {
         "name": "mantle",
-        "type": "git",
-        "url": "https://github.com/phanrahan/mantle.git",
-        "branch": "v1.0.12"
+        "type": "pypi"
     },
     {
         "name": "jmapper",
@@ -29,7 +27,7 @@
         "name": "fault",
         "type": "git",
         "url": "https://github.com/leonardt/fault",
-        "branch": "v2.0.23"
+        "branch": "master"
     },
         {
         "name": "pythunder",
@@ -49,25 +47,25 @@
         "name": "gemstone",
         "type": "git",
         "url": "https://github.com/StanfordAHA/gemstone",
-        "branch": "master"
+        "branch": "magma2"
     },
     {
         "name": "canal",
         "type": "git",
         "url": "https://github.com/StanfordAHA/canal",
-        "branch": "master"
+        "branch": "magma2"
     },
     {
         "name": "peak",
         "type": "git",
         "url": "https://github.com/phanrahan/peak",
-        "branch": "e958ab4996a49ff19d2c2ed5bdfcffc02a69eb36"
+        "branch": "update-rtl-utils"
     },
     {
         "name": "lassen",
         "type": "git",
         "url": "https://github.com/StanfordAHA/lassen",
-        "branch": "b81035a79182fb075e11dac11c45b2ad1d3d218e"
+        "branch": "fp-mask"
     },
     {
         "name": "metamapper",
