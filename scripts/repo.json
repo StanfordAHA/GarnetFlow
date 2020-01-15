@@ -47,25 +47,25 @@
         "name": "gemstone",
         "type": "git",
         "url": "https://github.com/StanfordAHA/gemstone",
-        "branch": "magma2"
+        "branch": "master"
     },
     {
         "name": "canal",
         "type": "git",
         "url": "https://github.com/StanfordAHA/canal",
-        "branch": "magma2"
+        "branch": "master"
     },
     {
         "name": "peak",
         "type": "git",
         "url": "https://github.com/phanrahan/peak",
-        "branch": "update-rtl-utils"
+        "branch": "master"
     },
     {
         "name": "lassen",
         "type": "git",
         "url": "https://github.com/StanfordAHA/lassen",
-        "branch": "fp-mask"
+        "branch": "master"
     },
     {
         "name": "metamapper",
