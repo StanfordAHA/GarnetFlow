@@ -59,13 +59,13 @@
         "name": "peak",
         "type": "git",
         "url": "https://github.com/phanrahan/peak",
-        "branch": "master"
+        "branch": "reg-update"
     },
     {
         "name": "lassen",
         "type": "git",
         "url": "https://github.com/StanfordAHA/lassen",
-        "branch": "master"
+        "branch": "peak-reg"
     },
     {
         "name": "metamapper",
