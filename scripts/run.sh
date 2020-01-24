@@ -16,6 +16,10 @@ else
     export HEIGHT=6
 fi
 
+cd garnet
+sed 's/simulator="ncsim"/simulator="vcs"/g' tbg.py
+cd ..
+
 # build CGRA
 make garnet_verilog
 
