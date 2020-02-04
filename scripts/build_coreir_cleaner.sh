@@ -5,7 +5,7 @@ COREIR_LD_FLAGS="-L$COREIR_DIR/lib -Wl,-rpath,$COREIR_DIR/lib -lcoreir-commonlib
 
 #rm -f coreir_cleaner
 echo "Compiling..."
-cmd="g++ coreir_interface_cleaner.cpp -I $BUFFERLIB_DIR/cfunc/include -I ./coreir/include/ $COREIR_LD_FLAGS -o coreir_cleaner"
+cmd="g++ -std=c++17 coreir_interface_cleaner.cpp -I $BUFFERLIB_DIR/cfunc/include -I ./coreir/include/ $COREIR_LD_FLAGS -o coreir_cleaner"
 echo "Cmd = $cmd"
 eval $cmd
 echo "done compiling..."
