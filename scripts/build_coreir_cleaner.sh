@@ -1,6 +1,6 @@
 COREIR_DIR=/GarnetFlow/scripts/coreir
 BUFFERLIB_DIR=/GarnetFlow/scripts/BufferMapping
-COREIR_LD_FLAGS="-L$COREIR_DIR/lib -Wl,-rpath,$COREIR_DIR/lib -lcoreir-commonlib -lcoreir -lcoreirsim -lcoreir-float -L$BUFFERLIB_DIR/cfunc/bin -lfuncubuf"
+COREIR_LD_FLAGS="-L$COREIR_DIR/lib -Wl,-rpath,$COREIR_DIR/lib -lcoreir-commonlib -lcoreir -lcoreirsim -lcoreir-float -L$BUFFERLIB_DIR/cfunc/bin -lcoreir-lakelib"
 #-Wl,-rpath $COREIR_DIR/lib
 
 #rm -f coreir_cleaner
