@@ -8,7 +8,7 @@ if [ ! -d "coreir" ]; then
 	# test of push ability
 	# build coreir here
 	#git clone --depth 1 --branch rm-ubuf https://github.com/rdaly525/coreir coreir
-	git clone --depth 1 --branch ubuffer https://github.com/rdaly525/coreir coreir
+	git clone --depth 1 --branch rm-ubuf-master https://github.com/rdaly525/coreir coreir
 	# there is a bug in ABI with regex
 	# see https://github.com/rdaly525/coreir/issues/737
 	#cd coreir && \
