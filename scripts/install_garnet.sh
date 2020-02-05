@@ -9,5 +9,10 @@ python3 python_repo.py
 pip3 install genesis2
 
 # clone garnet
-git clone --depth 1 https://github.com/StanfordAHA/garnet
-
+if [[ -z $garnet ]]; then
+    git clone --depth 1 https://github.com/StanfordAHA/garnet
+else
+    git clone https://github.com/StanfordAHA/garnet
+    cd garnet && git checkout $garnet
+    cd ..
+fi
