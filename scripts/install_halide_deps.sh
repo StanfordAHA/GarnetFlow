@@ -22,7 +22,7 @@ fi
 # create the lake repo
 export COREIR_DIR=/GarnetFlow/scripts/coreir # lake needs to know where coreir is
 if [ ! -d "BufferMapping" ]; then
-git clone --branch master --depth 1 https://github.com/joyliu37/BufferMapping
+git clone --branch master https://github.com/joyliu37/BufferMapping
 cd BufferMapping
 git checkout bb94e98930d1c139a599e16a66d9a810f58912f6
 cd ..
