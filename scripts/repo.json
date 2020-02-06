@@ -65,7 +65,7 @@
         "name": "lassen",
         "type": "git",
         "url": "https://github.com/StanfordAHA/lassen",
-        "branch": "cleanup"
+        "branch": "master"
     },
     {
         "name": "metamapper",
