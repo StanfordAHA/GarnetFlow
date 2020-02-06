@@ -9,7 +9,7 @@
         "name": "magma-lang",
         "type": "git",
         "url": "https://github.com/phanrahan/magma.git",
-        "branch": "master"
+        "branch": "8d9e0db1d6feda13f492e1c346c5a537bd79a13a"
     },
     {
         "name": "mantle",
@@ -47,7 +47,7 @@
         "name": "gemstone",
         "type": "git",
         "url": "https://github.com/StanfordAHA/gemstone",
-        "branch": "master"
+        "branch": "8552d2589842b99ca2b41e61d19932ca950b99a7"
     },
     {
         "name": "canal",

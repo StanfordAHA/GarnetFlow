@@ -11,8 +11,12 @@ pip3 install genesis2
 # clone garnet
 if [[ -z $garnet ]]; then
     git clone --depth 1 https://github.com/StanfordAHA/garnet
+    cd garnet
+    git checkout 1980f795e22354addf3bc4e53ba8f555a1d6743c
+    cd ..
 else
     git clone https://github.com/StanfordAHA/garnet
     cd garnet && git checkout $garnet
+    git checkout 1980f795e22354addf3bc4e53ba8f555a1d6743c
     cd ..
 fi
