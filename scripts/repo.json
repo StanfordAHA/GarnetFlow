@@ -9,7 +9,7 @@
         "name": "magma-lang",
         "type": "git",
         "url": "https://github.com/phanrahan/magma.git",
-        "branch": "master"
+        "branch": "refactor-from-verilog-2"
     },
     {
         "name": "mantle",
@@ -47,7 +47,7 @@
         "name": "gemstone",
         "type": "git",
         "url": "https://github.com/StanfordAHA/gemstone",
-        "branch": "master"
+        "branch": "revert-36-revert-35-magma-from-verilog-upstream"
     },
     {
         "name": "canal",
