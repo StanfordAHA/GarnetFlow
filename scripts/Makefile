@@ -24,10 +24,11 @@ define make-test
 $1: $(addprefix /tmp/, $1.bs.out)
 
 /tmp/$1.bs.out: garnet_verilog /tmp/$1.bs
+	echo "--- Running test $1..."
 	cd garnet && python tbg.py garnet.v garnet_stub.v $(addprefix /tmp/, $1.bs.json)
 
 /tmp/$1.bs: $(addprefix /tmp/, $1.json)
-	echo "Creating bitstream..."
+	echo "--- Creating bitstream $1..."
 	cd garnet && python garnet.py --width $(WIDTH) --height $(HEIGHT) --no-pd --input-app /tmp/$1.json \
 		--interconnect-only --input-file /tmp/$1_input.raw --output-file /tmp/$1.bs --gold-file /tmp/$1_gold.raw && cd ..
 
