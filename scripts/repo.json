@@ -9,11 +9,13 @@
         "name": "magma-lang",
         "type": "git",
         "url": "https://github.com/phanrahan/magma.git",
-        "branch": "master"
+        "branch": "named-temporary-values"
     },
     {
         "name": "mantle",
-        "type": "pypi"
+        "type": "git",
+        "url": "https://github.com/phanrahan/mantle.git",
+        "branch": "magma-rm-port"
     },
     {
         "name": "jmapper",
@@ -27,7 +29,7 @@
         "name": "fault",
         "type": "git",
         "url": "https://github.com/leonardt/fault",
-        "branch": "master"
+        "branch": "magma-rm-port"
     },
         {
         "name": "pythunder",
