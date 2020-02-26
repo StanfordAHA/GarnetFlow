@@ -14,7 +14,7 @@ export USE_CXX11_ABI := 0
 .PHONY: $(BITSTREAM) garnet_verilog
 
 garnet/garnet.v:
-	cd garnet && python garnet.py -v --width $(WIDTH) --height $(HEIGHT) --interconnect-only 1> /dev/null
+	cd garnet && python garnet.py -v --width $(WIDTH) --height $(HEIGHT) --interconnect-only 2> /dev/null
 
 garnet_verilog: garnet/garnet.v
 
@@ -29,7 +29,7 @@ $1: $(addprefix /tmp/, $1.bs.out)
 /tmp/$1.bs: $(addprefix /tmp/, $1.json)
 	echo "Creating bitstream..."
 	cd garnet && python garnet.py --width $(WIDTH) --height $(HEIGHT) --no-pd --input-app /tmp/$1.json \
-		--interconnect-only --input-file /tmp/$1_input.raw --output-file /tmp/$1.bs --gold-file /tmp/$1_gold.raw && cd ..
+		--interconnect-only --input-file /tmp/$1_input.raw --output-file /tmp/$1.bs --gold-file /tmp/$1_gold.raw 2> /dev/null && cd ..
 
 /tmp/$1.json:
 	@echo $(COREIR_DIR)
