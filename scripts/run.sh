@@ -19,6 +19,8 @@ fi
 # build CGRA
 make garnet_verilog
 
+make cascade
+
 # build apps
 make ushift
 make arith
@@ -33,7 +35,6 @@ make conv_2_1
 
 if [ -n "$BUILDKITE" ] && [ -z "$PR" ];
 then
-    make cascade
     make harris
     make gaussian
     make conv_3_3
