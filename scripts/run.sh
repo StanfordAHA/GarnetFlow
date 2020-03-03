@@ -39,3 +39,6 @@ then
     make conv_3_3
 fi
 
+cat "--- Summary"
+cat /tmp/time
+
