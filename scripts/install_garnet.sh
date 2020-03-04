@@ -1,6 +1,4 @@
-
-# pin pycoreir version since the latest one doesn't work
-pip3 install --ignore-installed coreir==2.0.19
+pip3 install --ignore-installed coreir
 
 # install this last since we already have a coreir built
 python3 python_repo.py
