@@ -27,8 +27,8 @@ define make-test
 $1: $(addprefix /tmp/, $1.bs.out)
 
 /tmp/$1.bs.out: garnet_verilog /tmp/$1.bs
-	@echo "$1.bs.out" >> /tmp/time
 	echo "--- Running test $1..."
+	@echo "$1.bs.out" >> /tmp/time
 	cd garnet && python tbg.py garnet.v garnet_stub.v $(addprefix /tmp/, $1.bs.json)
 	echo "$$(date -u -d @$$(($$(date +%s) - $$(date -r /tmp/time +%s))) +%T)" >> /tmp/time
 
@@ -43,8 +43,8 @@ $1: $(addprefix /tmp/, $1.bs.out)
 	@echo $(COREIR_DIR)
 	@echo ${OUTPUT_REDIRECTION}
 	@echo $(USR_CXX11_ABI)
-	@echo "$1.json" >> /tmp/time
 	echo "--- Compiling Halide $1..."
+	@echo "$1.json" >> /tmp/time
 	make -C $(HALIDE_DIR)/$2/$1 bin/design_top.json 1> /dev/null
 	make -C $(HALIDE_DIR)/$2/$1 bin/input.raw && cp $(HALIDE_DIR)/$2/$1/bin/input.raw /tmp/$1_input.raw
 	make -C $(HALIDE_DIR)/$2/$1 bin/output_cpu.raw && cp $(HALIDE_DIR)/$2/$1/bin/output_cpu.raw /tmp/$1_gold.raw
